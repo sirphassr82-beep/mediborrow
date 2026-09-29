@@ -139,7 +139,7 @@
                         </form>
                     </div>
 
-                    <!-- 3. ฟอร์มสมัครสมาชิกใหม่ (ตามแบบที่คุณต้องการ) -->
+                    <!-- 3. ฟอร์มสมัครสมาชิกใหม่ -->
                     <div id="content-register" class="space-y-5">
                         <div class="p-3.5 bg-teal-50/60 border border-teal-100 rounded-2xl flex items-start gap-3">
                             <div class="text-teal-600 text-lg mt-0.5"><i class="fa-solid fa-user-plus"></i></div>
@@ -195,8 +195,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="text" id="reg-subdistrict" required placeholder="ตำบล / แขวง เช่น ทับใต้ (อำเภอหัวหิน)" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
-                                    <p id="err-subdistrict" class="text-[10px] text-red-500 mt-0.5 hidden">ตำบลต้องอยู่ในอำเภอหัวหิน (เช่น ทับใต้, หนองแก, หินเหล็กไฟ ฯลฯ)</p>
+                                    <input type="text" id="reg-subdistrict" required placeholder="ตำบล เช่น ทับใต้, หนองแก, หินเหล็กไฟ" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                    <p id="err-subdistrict" class="text-[10px] text-red-500 mt-0.5 hidden">ต้องเป็นตำบลในอำเภอหัวหินเท่านั้น (เช่น ทับใต้, หนองแก, หินเหล็กไฟ, หนองพลับ, หัวหิน)</p>
                                 </div>
                             </div>
 
@@ -229,7 +229,7 @@
         </div>
     </main>
 
-    <!-- Script ควบคุมการตรวจสอบเงื่อนไขข้อมูล -->
+    <!-- Script ควบคุมการตรวจสอบเงื่อนไข -->
     <script>
         function switchTab(tab) {
             document.getElementById('content-staff').classList.add('hidden');
@@ -267,51 +267,53 @@
             alert('เข้าสู่ระบบสำเร็จ!');
         }
 
-        // ฟังก์ชันตรวจสอบฟอร์มสมัครสมาชิกตามเงื่อนไข
+        // ฟังก์ชันตรวจสอบเงื่อนไขการสมัครสมาชิก
         function handleRegister(e) {
             e.preventDefault();
             let isValid = true;
 
             let idCard = document.getElementById('reg-idcard').value;
             let phone = document.getElementById('reg-phone').value;
-            let houseNo = document.getElementById('reg-houseNo').value;
+            let houseNo = document.getElementById('reg-houseNo').value.trim();
             let subdistrict = document.getElementById('reg-subdistrict').value.trim();
             let password = document.getElementById('reg-password').value;
 
-            // ซ่อนข้อความแจ้งเตือนเดิมก่อน
+            // ซ่อนข้อความแจ้งเตือนทั้งหมดก่อน
             document.getElementById('err-idcard').classList.add('hidden');
             document.getElementById('err-phone').classList.add('hidden');
             document.getElementById('err-houseNo').classList.add('hidden');
             document.getElementById('err-subdistrict').classList.add('hidden');
             document.getElementById('err-password').classList.add('hidden');
 
-            // 1. ตรวจสอบเลขบัตรประชาชน (ต้องครบ 13 หลัก และเป็นตัวเลข)
+            // 1. เลขบัตรประชาชน: ต้องครบ 13 หลัก และเป็นตัวเลข
             if (idCard.length !== 13 || isNaN(idCard)) {
                 document.getElementById('err-idcard').classList.remove('hidden');
                 isValid = false;
             }
 
-            // 2. ตรวจสอบเบอร์โทร (ต้องครบ 10 หลัก และเป็นตัวเลข)
+            // 2. เบอร์โทรศัพท์: ต้องครบ 10 หลัก และเป็นตัวเลข
             if (phone.length !== 10 || isNaN(phone)) {
-                document.getElementById('err-phone').classList.add('hidden'); // ปรับตามจริง
                 document.getElementById('err-phone').classList.remove('hidden');
                 isValid = false;
             }
 
-            // 3. ตรวจสอบบ้านเลขที่ (ต้องเป็นตัวเลข)
-            if (isNaN(houseNo) && !houseNo.includes('/')) { // อนุญาตให้มีเครื่องหมาย / เช่น 14/2 ได้ แต่ส่วนใหญ่ควรเป็นตัวเลข
-                // หากต้องการตัวเลขล้วนใช้ isNaN(houseNo)
+            // 3. บ้านเลขที่: ต้องเป็นตัวเลข (หรือมีเครื่องหมายบ้านเลขที่ เช่น / ได้)
+            if (houseNo === '') {
+                document.getElementById('err-houseNo').classList.remove('hidden');
+                isValid = false;
             }
 
-            // 4. ตรวจสอบตำบล (บังคับให้พิมพ์ระบุตำบลใน อ.หัวหิน เช่น ทับใต้, หนองแก, หินเหล็กไฟ, ปราณบุรี ฯลฯ)
-            const allowedDistricts = ['ทับใต้', 'หนองแก', 'หินเหล็กไฟ', 'หนองพลับ', 'หินเหล็กไฟ', 'หุดหิน', 'หัวหิน', 'บ่อฝ้าย', 'ทับใต้'];
-            // เช็คคำว่าตำบลหรือพื้นที่หัวหินเบื้องต้น (หากผู้ใช้อาจพิมพ์แค่ชื่อตำบล)
-            if (subdistrict === '') {
+            // 4. ตำบล: ต้องอยู่ในอำเภอหัวหินเท่านั้น
+            const huahinSubdistricts = ['ทับใต้', 'หนองแก', 'หินเหล็กไฟ', 'หนองพลับ', 'หัวหิน', 'ห้วยสัตว์ใหญ่', 'บ่อฝ้าย'];
+            // ตรวจสอบว่าข้อความที่กรอกมีชื่อตำบลในอำเภอหัวหินรวมอยู่ด้วยหรือไม่
+            let isHuaHin = huahinSubdistricts.some(sub => subdistrict.includes(sub));
+            
+            if (!isHuaHin) {
                 document.getElementById('err-subdistrict').classList.remove('hidden');
                 isValid = false;
             }
 
-            // 5. ตรวจสอบรหัสผ่าน (อย่างน้อย 6 ตัวอักษร)
+            // 5. รหัสผ่าน: อย่างน้อย 6 ตัวอักษร
             if (password.length < 6) {
                 document.getElementById('err-password').classList.remove('hidden');
                 isValid = false;
