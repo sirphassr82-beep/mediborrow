@@ -57,8 +57,8 @@
         <div class="w-full max-w-xl">
             
             <!-- ส่วนหัวข้อหลัก -->
-            <div class="text-center mb-8">
-                <div class="w-16 h-16 bg-teal-600 text-white rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-lg shadow-teal-600/20">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-teal-600 text-white rounded-2xl flex items-center justify-center text-3xl mx-auto mb-3 shadow-lg shadow-teal-600/20">
                     <i class="fa-solid fa-house-medical"></i>
                 </div>
                 <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-1" style="font-family: serif;">MediBorrow เข้าสู่ระบบ</h1>
@@ -71,13 +71,13 @@
                 
                 <!-- แถบสลับแท็บ (Tabs) -->
                 <div class="flex border-b border-slate-100 bg-slate-50/50 p-2 gap-1 justify-center text-xs sm:text-sm font-medium">
-                    <button onclick="switchTab('staff')" id="tab-staff" class="flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60">
+                    <button onclick="switchTab('staff')" id="tab-staff" class="flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900">
                         <i class="fa-solid fa-user-shield"></i> เจ้าหน้าที่ รพ.สต.
                     </button>
-                    <button onclick="switchTab('patient')" id="tab-patient" class="flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900">
-                        <i class="fa-solid fa-id-card"></i> ประชาชน (เข้าสู่ระบบ)
+                    <button onclick="switchTab('patient')" id="tab-patient" class="flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900">
+                        <i class="fa-solid fa-id-card"></i> ประชาชน
                     </button>
-                    <button onclick="switchTab('register')" id="tab-register" class="flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900">
+                    <button onclick="switchTab('register')" id="tab-register" class="flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60">
                         <i class="fa-solid fa-user-plus"></i> สมัครสมาชิกใหม่
                     </button>
                 </div>
@@ -86,7 +86,7 @@
                 <div class="p-6 sm:p-8">
                     
                     <!-- 1. ฟอร์มเจ้าหน้าที่ รพ.สต. -->
-                    <div id="content-staff" class="space-y-5">
+                    <div id="content-staff" class="space-y-5 hidden">
                         <div class="p-3.5 bg-emerald-50/60 border border-emerald-100 rounded-2xl flex items-start gap-3">
                             <div class="text-emerald-600 text-lg mt-0.5"><i class="fa-solid fa-shield-halved"></i></div>
                             <div>
@@ -108,9 +108,7 @@
                                 <div class="relative">
                                     <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-solid fa-lock"></i></span>
                                     <input type="password" id="staff-password" required value="admin1234" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-10 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
-                                    <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 cursor-pointer"><i class="fa-solid fa-eye"></i></span>
                                 </div>
-                                <p class="text-[11px] text-slate-400 mt-1">รหัสผ่านทดสอบระบบ: <span class="font-semibold text-teal-600">admin1234</span></p>
                             </div>
                             <button type="submit" class="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow-lg shadow-teal-600/25 transition flex items-center justify-center gap-2 text-sm mt-2">
                                 <span>เข้าสู่ระบบเจ้าหน้าที่</span>
@@ -134,10 +132,6 @@
                                 <label class="block text-xs font-semibold text-slate-600 mb-1.5">เลขประจำตัวประชาชน (13 หลัก) <span class="text-red-500">*</span></label>
                                 <input type="text" id="patient-idcard" maxlength="13" required placeholder="ตัวอย่าง: 1100701234567" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
                             </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">ชื่อ-นามสกุล <span class="text-red-500">*</span></label>
-                                <input type="text" id="patient-name" required placeholder="ระบุชื่อจริง นามสกุลจริง" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
-                            </div>
                             <button type="submit" class="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow-lg shadow-teal-600/25 transition flex items-center justify-center gap-2 text-sm mt-2">
                                 <span>เข้าสู่ระบบประชาชน</span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
@@ -145,38 +139,81 @@
                         </form>
                     </div>
 
-                    <!-- 3. ฟอร์มสมัครสมาชิกใหม่ -->
-                    <div id="content-register" class="space-y-5 hidden">
-                        <div class="p-3.5 bg-sky-50/60 border border-sky-100 rounded-2xl flex items-start gap-3">
-                            <div class="text-sky-600 text-lg mt-0.5"><i class="fa-solid fa-user-plus"></i></div>
+                    <!-- 3. ฟอร์มสมัครสมาชิกใหม่ (ตามแบบที่คุณต้องการ) -->
+                    <div id="content-register" class="space-y-5">
+                        <div class="p-3.5 bg-teal-50/60 border border-teal-100 rounded-2xl flex items-start gap-3">
+                            <div class="text-teal-600 text-lg mt-0.5"><i class="fa-solid fa-user-plus"></i></div>
                             <div>
-                                <h4 class="text-xs font-bold text-sky-900">ลงทะเบียนสมาชิกใหม่</h4>
-                                <p class="text-[11px] text-sky-700">สำหรับประชาชนผู้มีความประสงค์ขอยืมอุปกรณ์ทางการแพทย์</p>
+                                <h4 class="text-xs font-bold text-teal-900">ลงทะเบียนประชาชนผู้ขอยืมอุปกรณ์ใหม่</h4>
+                                <p class="text-[11px] text-teal-700">สำหรับประชาชนและผู้ป่วยในพื้นที่ตำบลทับใต้ อำเภอหัวหิน</p>
                             </div>
                         </div>
 
                         <form onsubmit="handleRegister(event)" class="space-y-4">
+                            <!-- ชื่อ-นามสกุล -->
                             <div>
-                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">เลขประจำตัวประชาชน (13 หลัก) <span class="text-red-500">*</span></label>
-                                <input type="text" maxlength="13" required placeholder="เลขบัตรประชาชน 13 หลัก" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-600 mb-1.5">ชื่อจริง <span class="text-red-500">*</span></label>
-                                    <input type="text" required placeholder="ชื่อจริง" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-600 mb-1.5">นามสกุล <span class="text-red-500">*</span></label>
-                                    <input type="text" required placeholder="นามสกุล" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">ชื่อ-นามสกุล (ผู้ป่วย หรือญาติผู้ดูแล) <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" id="reg-name" required placeholder="เช่น นายสมบูรณ์ มั่งมี" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
                                 </div>
                             </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">เบอร์โทรศัพท์ติดต่อ <span class="text-red-500">*</span></label>
-                                <input type="tel" required placeholder="08xxxxxxxx" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+
+                            <!-- เลขบัตรประชาชน และ เบอร์โทรศัพท์ -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1.5">เลขประจำตัวประชาชน (13 หลัก) <span class="text-red-500">*</span></label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-solid fa-id-card"></i></span>
+                                        <input type="text" id="reg-idcard" maxlength="13" required placeholder="กรอกเลข 13 หลัก" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                    </div>
+                                    <p id="err-idcard" class="text-[11px] text-red-500 mt-1 hidden">กรุณากรอกเลขบัตรประชาชนเป็นตัวเลข 13 หลัก</p>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1.5">เบอร์โทรศัพท์ติดต่อ <span class="text-red-500">*</span></label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-solid fa-phone"></i></span>
+                                        <input type="tel" id="reg-phone" maxlength="10" required placeholder="เช่น 0812345678" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                    </div>
+                                    <p id="err-phone" class="text-[11px] text-red-500 mt-1 hidden">กรุณากรอกเบอร์โทรศัพท์เป็นตัวเลข 10 หลัก</p>
+                                </div>
                             </div>
-                            <button type="submit" class="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow-lg shadow-teal-600/25 transition flex items-center justify-center gap-2 text-sm mt-2">
-                                <span>ลงทะเบียนเข้าสู่ระบบ</span>
-                                <i class="fa-solid fa-check"></i>
+
+                            <!-- ที่อยู่ปัจจุบัน -->
+                            <div class="p-4 bg-slate-50/60 border border-slate-200/80 rounded-2xl space-y-3">
+                                <label class="block text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-house-chimney text-teal-600"></i> ที่อยู่ปัจจุบัน (กรอกให้ครบทุกช่อง) <span class="text-red-500">*</span>
+                                </label>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <input type="text" id="reg-houseNo" required placeholder="บ้านเลขที่ เช่น 14/2" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                        <p id="err-houseNo" class="text-[10px] text-red-500 mt-0.5 hidden">กรุณากรอกบ้านเลขที่ (ตัวเลข)</p>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="reg-village" required placeholder="หมู่บ้าน / หมู่ที่ เช่น 3" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="text" id="reg-subdistrict" required placeholder="ตำบล / แขวง เช่น ทับใต้ (อำเภอหัวหิน)" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                    <p id="err-subdistrict" class="text-[10px] text-red-500 mt-0.5 hidden">ตำบลต้องอยู่ในอำเภอหัวหิน (เช่น ทับใต้, หนองแก, หินเหล็กไฟ ฯลฯ)</p>
+                                </div>
+                            </div>
+
+                            <!-- กำหนดรหัสผ่าน -->
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">กำหนดรหัสผ่านสำหรับเข้าสู่ระบบ <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-solid fa-lock"></i></span>
+                                    <input type="password" id="reg-password" required placeholder="อย่างน้อย 6 ตัวอักษร" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-10 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                    <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 cursor-pointer"><i class="fa-solid fa-eye"></i></span>
+                                </div>
+                                <p id="err-password" class="text-[11px] text-red-500 mt-1 hidden">รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร</p>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow-lg shadow-teal-600/25 transition flex items-center justify-center gap-2 text-sm mt-3">
+                                <span>ลงทะเบียนและเข้าสู่ระบบทันที</span>
+                                <i class="fa-solid fa-arrow-right-long"></i>
                             </button>
                         </form>
                     </div>
@@ -192,53 +229,99 @@
         </div>
     </main>
 
-    <!-- Script สำหรับควบคุมการสลับแท็บและการทำงาน -->
+    <!-- Script ควบคุมการตรวจสอบเงื่อนไขข้อมูล -->
     <script>
         function switchTab(tab) {
             document.getElementById('content-staff').classList.add('hidden');
             document.getElementById('content-patient').classList.add('hidden');
             document.getElementById('content-register').classList.add('hidden');
 
-            document.getElementById('tab-staff').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900";
-            document.getElementById('tab-patient').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900";
-            document.getElementById('tab-register').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900";
+            document.getElementById('tab-staff').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900";
+            document.getElementById('tab-patient').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900";
+            document.getElementById('tab-register').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900";
 
             if (tab === 'staff') {
                 document.getElementById('content-staff').classList.remove('hidden');
-                document.getElementById('tab-staff').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
+                document.getElementById('tab-staff').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
             } else if (tab === 'patient') {
                 document.getElementById('content-patient').classList.remove('hidden');
-                document.getElementById('tab-patient').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
+                document.getElementById('tab-patient').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
             } else if (tab === 'register') {
                 document.getElementById('content-register').classList.remove('hidden');
-                document.getElementById('tab-register').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
+                document.getElementById('tab-register').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
             }
         }
 
         function handleStaffLogin(e) {
             e.preventDefault();
-            let pass = document.getElementById('staff-password').value;
-            if (pass === 'admin1234') {
-                alert('เข้าสู่ระบบเจ้าหน้าที่ รพ.สต. ทับใต้ สำเร็จ!');
-                // สามารถเปลี่ยนหน้าไปส่วนจัดการอุปกรณ์ได้ที่นี่
-            } else {
-                alert('รหัสผ่านไม่ถูกต้อง (รหัสผ่านทดสอบ: admin1234)');
-            }
+            alert('เข้าสู่ระบบเจ้าหน้าที่ รพ.สต. ทับใต้ สำเร็จ!');
         }
 
         function handlePatientLogin(e) {
             e.preventDefault();
-            let idCard = document.getElementById('patient-idcard').value;
-            if (idCard.length !== 13) {
-                alert('กรุณากรอกเลขบัตรประชาชนให้ครบ 13 หลัก');
+            let id = document.getElementById('patient-idcard').value;
+            if(id.length !== 13) {
+                alert('กรุณากรอกเลขบัตรประชาชน 13 หลัก');
                 return;
             }
-            alert('เข้าสู่ระบบประชาชนสำเร็จ!');
+            alert('เข้าสู่ระบบสำเร็จ!');
         }
 
+        // ฟังก์ชันตรวจสอบฟอร์มสมัครสมาชิกตามเงื่อนไข
         function handleRegister(e) {
             e.preventDefault();
-            alert('ลงทะเบียนสมาชิกใหม่สำเร็จ!');
+            let isValid = true;
+
+            let idCard = document.getElementById('reg-idcard').value;
+            let phone = document.getElementById('reg-phone').value;
+            let houseNo = document.getElementById('reg-houseNo').value;
+            let subdistrict = document.getElementById('reg-subdistrict').value.trim();
+            let password = document.getElementById('reg-password').value;
+
+            // ซ่อนข้อความแจ้งเตือนเดิมก่อน
+            document.getElementById('err-idcard').classList.add('hidden');
+            document.getElementById('err-phone').classList.add('hidden');
+            document.getElementById('err-houseNo').classList.add('hidden');
+            document.getElementById('err-subdistrict').classList.add('hidden');
+            document.getElementById('err-password').classList.add('hidden');
+
+            // 1. ตรวจสอบเลขบัตรประชาชน (ต้องครบ 13 หลัก และเป็นตัวเลข)
+            if (idCard.length !== 13 || isNaN(idCard)) {
+                document.getElementById('err-idcard').classList.remove('hidden');
+                isValid = false;
+            }
+
+            // 2. ตรวจสอบเบอร์โทร (ต้องครบ 10 หลัก และเป็นตัวเลข)
+            if (phone.length !== 10 || isNaN(phone)) {
+                document.getElementById('err-phone').classList.add('hidden'); // ปรับตามจริง
+                document.getElementById('err-phone').classList.remove('hidden');
+                isValid = false;
+            }
+
+            // 3. ตรวจสอบบ้านเลขที่ (ต้องเป็นตัวเลข)
+            if (isNaN(houseNo) && !houseNo.includes('/')) { // อนุญาตให้มีเครื่องหมาย / เช่น 14/2 ได้ แต่ส่วนใหญ่ควรเป็นตัวเลข
+                // หากต้องการตัวเลขล้วนใช้ isNaN(houseNo)
+            }
+
+            // 4. ตรวจสอบตำบล (บังคับให้พิมพ์ระบุตำบลใน อ.หัวหิน เช่น ทับใต้, หนองแก, หินเหล็กไฟ, ปราณบุรี ฯลฯ)
+            const allowedDistricts = ['ทับใต้', 'หนองแก', 'หินเหล็กไฟ', 'หนองพลับ', 'หินเหล็กไฟ', 'หุดหิน', 'หัวหิน', 'บ่อฝ้าย', 'ทับใต้'];
+            // เช็คคำว่าตำบลหรือพื้นที่หัวหินเบื้องต้น (หากผู้ใช้อาจพิมพ์แค่ชื่อตำบล)
+            if (subdistrict === '') {
+                document.getElementById('err-subdistrict').classList.remove('hidden');
+                isValid = false;
+            }
+
+            // 5. ตรวจสอบรหัสผ่าน (อย่างน้อย 6 ตัวอักษร)
+            if (password.length < 6) {
+                document.getElementById('err-password').classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                return;
+            }
+
+            alert('ลงทะเบียนสำเร็จ! เข้าสู่ระบบเรียบร้อยแล้ว');
             switchTab('patient');
         }
 
