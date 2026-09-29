@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบยืม-คืนอุปกรณ์ทางการแพทย์ รพ.สตทับใต้.</title>
+    <title>MediBorrow - ระบบยืม-คืนอุปกรณ์ทางการแพทย์ รพ.สต. ทับใต้</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,538 +22,228 @@
         body { font-family: 'Prompt', sans-serif; }
         .fade-in { animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
-    <!-- หน้าจอเข้าสู่ระบบหลัก (เลือกประเภทผู้ใช้งาน) -->
-    <div id="login-section" class="fixed inset-0 bg-gradient-to-br from-teal-500 to-emerald-700 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 text-center fade-in">
-            <div class="w-20 h-20 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-inner">
-                <i class="fa-solid fa-house-medical"></i>
-            </div>
-            <h1 class="text-2xl font-bold text-slate-800 mb-2">รพ.สต.ทับใต้</h1>
-            <p class="text-slate-500 mb-8 text-sm">ระบบยืม-คืนอุปกรณ์ทางการแพทย์สำหรับประชาชน</p>
-            
-            <div class="space-y-4">
-                <button onclick="showLoginForm('patient')" class="w-full py-4 px-6 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow-lg shadow-teal-600/30 transition flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-user-injured text-xl"></i>
-                    <span>เข้าสู่ระบบ: ประชาชน / ผู้มายืม</span>
-                </button>
-                <button onclick="showLoginForm('staff')" class="w-full py-4 px-6 bg-white hover:bg-slate-50 text-teal-700 border-2 border-teal-600 font-semibold rounded-xl transition flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-user-nurse text-xl"></i>
-                    <span>เข้าสู่ระบบ: เจ้าหน้าที่อนามัย</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal ย่อยสำหรับกรอกข้อมูลล็อกอิน (แยกตามสิทธิ์) -->
-    <div id="sub-login-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl fade-in relative">
-            <button onclick="closeSubLogin()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-            
-            <!-- ฟอร์มประชาชน (ใช้เลขบัตรประชาชน) -->
-            <div id="form-patient" class="hidden">
-                <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-xl flex items-center justify-center text-2xl mb-4">
-                    <i class="fa-solid fa-id-card"></i>
-                </div>
-                <h3 class="text-lg font-bold text-slate-800 mb-1">เข้าสู่ระบบสำหรับประชาชน</h3>
-                <p class="text-xs text-slate-500 mb-6">กรอกเลขประจำตัวประชาชน 13 หลักเพื่อขอยืมและตรวจสอบสถานะ</p>
-                
-                <form onsubmit="handlePatientLogin(event)">
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">เลขประจำตัวประชาชน (13 หลัก)</label>
-                            <input type="text" id="login-idcard" maxlength="13" required placeholder="ตัวอย่าง: 1100701234567" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">ชื่อ-นามสกุล (สำหรับบันทึกข้อมูลเบื้องต้น)</label>
-                            <input type="text" id="login-patient-name" required placeholder="ระบุชื่อจริง นามสกุลจริง" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                        </div>
-                    </div>
-                    <div class="mt-6 flex justify-end gap-3">
-                        <button type="button" onclick="closeSubLogin()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition">ยกเลิก</button>
-                        <button type="submit" class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-lg shadow-md transition">เข้าสู่ระบบ</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- ฟอร์มเจ้าหน้าที่ (ใช้รหัสผ่าน) -->
-            <div id="form-staff" class="hidden">
-                <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-xl flex items-center justify-center text-2xl mb-4">
-                    <i class="fa-solid fa-user-shield"></i>
-                </div>
-                <h3 class="text-lg font-bold text-slate-800 mb-1">เข้าสู่ระบบเจ้าหน้าที่ รพ.สต.ทับใต้</h3>
-                <p class="text-xs text-slate-500 mb-6">กรอกรหัสผ่านเพื่อเข้าใช้งานระบบจัดการคลัง</p>
-                
-                <form onsubmit="handleStaffLogin(event)">
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">รหัสผ่านเจ้าหน้าที่ (Password)</label>
-                            <input type="password" id="staff-password" required placeholder="••••••••" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                            <p class="text-[10px] text-slate-400 mt-1">รหัสผ่านทดสอบ: <span class="font-semibold text-teal-600">admin1234</span></p>
-                        </div>
-                    </div>
-                    <div class="mt-6 flex justify-end gap-3">
-                        <button type="button" onclick="closeSubLogin()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition">ยกเลิก</button>
-                        <button type="submit" class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-lg shadow-md transition">เข้าสู่ระบบ</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- ส่วนหัวเว็บไซต์หลัก -->
+    <!-- ส่วนหัวเว็บไซต์ (Header) -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-teal-600 text-white rounded-lg flex items-center justify-center text-xl">
+                <div class="w-10 h-10 bg-teal-600 text-white rounded-xl flex items-center justify-center text-xl shadow-md">
                     <i class="fa-solid fa-kit-medical"></i>
                 </div>
                 <div>
-                    <h2 class="font-bold text-slate-800 text-base sm:text-lg">รพ.สต.ทับใต้</h2>
-                    <p class="text-xs text-slate-500">ระบบยืม-คืนอุปกรณ์ทางการแพทย์</p>
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-slate-900 text-base">MediBorrow</span>
+                        <span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-semibold rounded-full border border-emerald-200">รพ.สต. ทับใต้</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500">โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ อ.หัวหิน</p>
                 </div>
             </div>
-            <div class="flex items-center gap-4">
-                <span id="role-badge" class="px-3 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded-full border border-teal-200"></span>
-                <button onclick="handleLogout()" class="text-sm text-red-600 hover:text-red-700 font-medium bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition">
-                    <i class="fa-solid fa-right-from-bracket mr-1"></i> ออกจากระบบ
+            <div>
+                <button onclick="switchView('login')" class="px-4 py-2 bg-slate-50 hover:bg-slate-100 text-teal-700 border border-teal-200 font-medium text-xs rounded-xl transition flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- เนื้อหาหลัก (สลับแสดงตามสิทธิ์) -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8" id="main-content">
-        <!-- เนื้อหาจะถูกเติมด้วย JavaScript -->
+    <!-- เนื้อหาหลัก (Main Content) -->
+    <main class="flex-grow flex items-center justify-center px-4 py-8">
+        <div class="w-full max-w-xl">
+            
+            <!-- ส่วนหัวข้อหลัก -->
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-teal-600 text-white rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-lg shadow-teal-600/20">
+                    <i class="fa-solid fa-house-medical"></i>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-1" style="font-family: serif;">MediBorrow เข้าสู่ระบบ</h1>
+                <p class="text-sm font-semibold text-slate-700">โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ (รพ.สต. ทับใต้)</p>
+                <p class="text-xs text-slate-400 mt-0.5">ตำบลทับใต้ อำเภอหัวหิน จังหวัดประจวบคีรีขันธ์</p>
+            </div>
+
+            <!-- กล่องฟอร์มหลัก -->
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden fade-in">
+                
+                <!-- แถบสลับแท็บ (Tabs) -->
+                <div class="flex border-b border-slate-100 bg-slate-50/50 p-2 gap-1 justify-center text-xs sm:text-sm font-medium">
+                    <button onclick="switchTab('staff')" id="tab-staff" class="flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60">
+                        <i class="fa-solid fa-user-shield"></i> เจ้าหน้าที่ รพ.สต.
+                    </button>
+                    <button onclick="switchTab('patient')" id="tab-patient" class="flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900">
+                        <i class="fa-solid fa-id-card"></i> ประชาชน (เข้าสู่ระบบ)
+                    </button>
+                    <button onclick="switchTab('register')" id="tab-register" class="flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900">
+                        <i class="fa-solid fa-user-plus"></i> สมัครสมาชิกใหม่
+                    </button>
+                </div>
+
+                <!-- เนื้อหาภายในแท็บ -->
+                <div class="p-6 sm:p-8">
+                    
+                    <!-- 1. ฟอร์มเจ้าหน้าที่ รพ.สต. -->
+                    <div id="content-staff" class="space-y-5">
+                        <div class="p-3.5 bg-emerald-50/60 border border-emerald-100 rounded-2xl flex items-start gap-3">
+                            <div class="text-emerald-600 text-lg mt-0.5"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-emerald-900">เข้าสู่ระบบสำหรับเจ้าหน้าที่ รพ.สต. ทับใต้</h4>
+                                <p class="text-[11px] text-emerald-700">ระบบบริหารจัดการคลังครุภัณฑ์และการยืม-คืนอุปกรณ์ทางการแพทย์</p>
+                            </div>
+                        </div>
+
+                        <form onsubmit="handleStaffLogin(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">ชื่อผู้ใช้ (Username) <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" id="staff-username" required value="ศิริภัสสร.55" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">รหัสผ่าน (Password) <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-solid fa-lock"></i></span>
+                                    <input type="password" id="staff-password" required value="admin1234" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-10 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                    <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 cursor-pointer"><i class="fa-solid fa-eye"></i></span>
+                                </div>
+                                <p class="text-[11px] text-slate-400 mt-1">รหัสผ่านทดสอบระบบ: <span class="font-semibold text-teal-600">admin1234</span></p>
+                            </div>
+                            <button type="submit" class="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow-lg shadow-teal-600/25 transition flex items-center justify-center gap-2 text-sm mt-2">
+                                <span>เข้าสู่ระบบเจ้าหน้าที่</span>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 2. ฟอร์มประชาชน -->
+                    <div id="content-patient" class="space-y-5 hidden">
+                        <div class="p-3.5 bg-teal-50/60 border border-teal-100 rounded-2xl flex items-start gap-3">
+                            <div class="text-teal-600 text-lg mt-0.5"><i class="fa-solid fa-id-card"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-teal-900">เข้าสู่ระบบสำหรับประชาชน / ผู้มายืม</h4>
+                                <p class="text-[11px] text-teal-700">กรอกเลขประจำตัวประชาชน 13 หลักเพื่อตรวจสอบสถานะการยืม</p>
+                            </div>
+                        </div>
+
+                        <form onsubmit="handlePatientLogin(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">เลขประจำตัวประชาชน (13 หลัก) <span class="text-red-500">*</span></label>
+                                <input type="text" id="patient-idcard" maxlength="13" required placeholder="ตัวอย่าง: 1100701234567" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">ชื่อ-นามสกุล <span class="text-red-500">*</span></label>
+                                <input type="text" id="patient-name" required placeholder="ระบุชื่อจริง นามสกุลจริง" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                            </div>
+                            <button type="submit" class="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow-lg shadow-teal-600/25 transition flex items-center justify-center gap-2 text-sm mt-2">
+                                <span>เข้าสู่ระบบประชาชน</span>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 3. ฟอร์มสมัครสมาชิกใหม่ -->
+                    <div id="content-register" class="space-y-5 hidden">
+                        <div class="p-3.5 bg-sky-50/60 border border-sky-100 rounded-2xl flex items-start gap-3">
+                            <div class="text-sky-600 text-lg mt-0.5"><i class="fa-solid fa-user-plus"></i></div>
+                            <div>
+                                <h4 class="text-xs font-bold text-sky-900">ลงทะเบียนสมาชิกใหม่</h4>
+                                <p class="text-[11px] text-sky-700">สำหรับประชาชนผู้มีความประสงค์ขอยืมอุปกรณ์ทางการแพทย์</p>
+                            </div>
+                        </div>
+
+                        <form onsubmit="handleRegister(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">เลขประจำตัวประชาชน (13 หลัก) <span class="text-red-500">*</span></label>
+                                <input type="text" maxlength="13" required placeholder="เลขบัตรประชาชน 13 หลัก" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1.5">ชื่อจริง <span class="text-red-500">*</span></label>
+                                    <input type="text" required placeholder="ชื่อจริง" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1.5">นามสกุล <span class="text-red-500">*</span></label>
+                                    <input type="text" required placeholder="นามสกุล" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">เบอร์โทรศัพท์ติดต่อ <span class="text-red-500">*</span></label>
+                                <input type="tel" required placeholder="08xxxxxxxx" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                            </div>
+                            <button type="submit" class="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow-lg shadow-teal-600/25 transition flex items-center justify-center gap-2 text-sm mt-2">
+                                <span>ลงทะเบียนเข้าสู่ระบบ</span>
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer ด้านล่างกล่อง -->
+            <div class="text-center mt-6 text-xs text-slate-400">
+                <p>โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ โทร. 032-510-123</p>
+            </div>
+
+        </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
-        <p>&copy; 2026 โรงพยาบาลส่งเสริมสุขภาพตำบล (รพ.สต.ทับใต้) - พัฒนาเพื่อการบริการประชาชน</p>
-    </footer>
-
-    <!-- Modal ฟอร์มขอยืมอุปกรณ์ -->
-    <div id="borrow-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl fade-in">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold text-slate-800">ฟอร์มขอยืมอุปกรณ์ทางการแพทย์</h3>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
-            <form id="borrow-form" onsubmit="submitBorrowRequest(event)">
-                <input type="hidden" id="modal-eq-id">
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">อุปกรณ์ที่เลือก</label>
-                        <input type="text" id="modal-eq-name" disabled class="w-full bg-slate-100 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">ชื่อ-นามสกุล (ผู้ขอยืม)</label>
-                        <input type="text" id="borrower-name" disabled class="w-full bg-slate-100 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">เลขประจำตัวประชาชน</label>
-                        <input type="text" id="borrower-idcard" disabled class="w-full bg-slate-100 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">เบอร์โทรศัพท์ติดต่อ</label>
-                        <input type="tel" id="borrower-phone" required placeholder="08xxxxxxxx" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">วันที่กำหนดส่งคืน</label>
-                        <input type="date" id="borrower-duedate" required class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    </div>
-                </div>
-                <div class="mt-6 flex justify-end gap-3">
-                    <button type="button" onclick="closeModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition">ยกเลิก</button>
-                    <button type="submit" class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-lg shadow-md transition">ยืนยันการขอยืม</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal เพิ่มอุปกรณ์ใหม่ (สำหรับเจ้าหน้าที่) -->
-    <div id="add-eq-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl fade-in">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold text-slate-800">เพิ่มอุปกรณ์ทางการแพทย์ใหม่</h3>
-                <button onclick="closeAddModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
-            <form onsubmit="addNewEquipment(event)">
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">ชื่ออุปกรณ์</label>
-                        <input type="text" id="new-name" required placeholder="เช่น เครื่องวัดความดัน" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">รายละเอียดอุปกรณ์</label>
-                        <input type="text" id="new-desc" required placeholder="ระบุรายละเอียดสั้นๆ" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">จำนวนทั้งหมดในคลัง</label>
-                        <input type="number" id="new-total" min="1" value="1" required class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">เลือกไอคอน</label>
-                        <select id="new-icon" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                            <option value="fa-bed">เตียงผู้ป่วย (fa-bed)</option>
-                            <option value="fa-lungs">ระบบทางเดินหายใจ (fa-lungs)</option>
-                            <option value="fa-wheelchair">รถเข็น (fa-wheelchair)</option>
-                            <option value="fa-crutch">ไม้ค้ำยัน (fa-crutch)</option>
-                            <option value="fa-stethoscope">อุปกรณ์ตรวจโรค (fa-stethoscope)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="mt-6 flex justify-end gap-3">
-                    <button type="button" onclick="closeAddModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition">ยกเลิก</button>
-                    <button type="submit" class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-lg shadow-md transition">บันทึกอุปกรณ์</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
+    <!-- Script สำหรับควบคุมการสลับแท็บและการทำงาน -->
     <script>
-        let equipments = [
-            { id: 1, name: 'เตียงผู้ป่วยปรับระดับ', desc: 'เตียงผู้ป่วยมือหมุน 2 ไกร์ พร้อมเบาะรองนอน', total: 5, available: 3, icon: 'fa-bed' },
-            { id: 2, name: 'เครื่องผลิตออกซิเจน (5L)', desc: 'ช่วยพยุงระบบทางเดินหายใจ ผู้ป่วยติดเตียง', total: 3, available: 1, icon: 'fa-lungs' },
-            { id: 3, name: 'รถเข็นนั่ง (Wheelchair)', desc: 'โครงเหล็กพับเก็บได้ น้ำหนักมาตรฐาน', total: 8, available: 6, icon: 'fa-wheelchair' },
-            { id: 4, name: 'ไม้ค้ำยันรักแร้ (คู่)', desc: 'วัสดุอลูมิเนียม น้ำหนักเบา ปรับความสูงได้', total: 10, available: 10, icon: 'fa-crutch' }
-        ];
+        function switchTab(tab) {
+            document.getElementById('content-staff').classList.add('hidden');
+            document.getElementById('content-patient').classList.add('hidden');
+            document.getElementById('content-register').classList.add('hidden');
 
-        let requests = [
-            { id: 101, eqId: 1, eqName: 'เตียงผู้ป่วยปรับระดับ', name: 'คุณสมชาย ใจดี', idCard: '1100701234567', phone: '081-234-5678', dueDate: '2026-04-15', status: 'กำลังยืม' },
-            { id: 102, eqId: 2, eqName: 'เครื่องผลิตออกซิเจน (5L)', name: 'คุณแม่ดวงใจ รักความสะอาด', idCard: '3100509876543', phone: '089-876-5432', dueDate: '2026-04-10', status: 'รอดำเนินการ' }
-        ];
+            document.getElementById('tab-staff').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900";
+            document.getElementById('tab-patient').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900";
+            document.getElementById('tab-register').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900";
 
-        let currentUser = { role: '', name: '', idCard: '' };
-
-        function showLoginForm(role) {
-            document.getElementById('sub-login-modal').classList.remove('hidden');
-            if (role === 'patient') {
-                document.getElementById('form-patient').classList.remove('hidden');
-                document.getElementById('form-staff').classList.add('hidden');
-            } else {
-                document.getElementById('form-staff').classList.remove('hidden');
-                document.getElementById('form-patient').classList.add('hidden');
+            if (tab === 'staff') {
+                document.getElementById('content-staff').classList.remove('hidden');
+                document.getElementById('tab-staff').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
+            } else if (tab === 'patient') {
+                document.getElementById('content-patient').classList.remove('hidden');
+                document.getElementById('tab-patient').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
+            } else if (tab === 'register') {
+                document.getElementById('content-register').classList.remove('hidden');
+                document.getElementById('tab-register').className = "flex-1 py-2.5 px-3 rounded-2xl transition flex items-center justify-center gap-2 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
             }
-        }
-
-        function closeSubLogin() {
-            document.getElementById('sub-login-modal').classList.add('hidden');
-        }
-
-        function handlePatientLogin(e) {
-            e.preventDefault();
-            let idCard = document.getElementById('login-idcard').value.trim();
-            let name = document.getElementById('login-patient-name').value.trim();
-
-            if (idCard.length !== 13) {
-                alert('กรุณากรอกเลขประจำตัวประชาชนให้ครบ 13 หลัก');
-                return;
-            }
-
-            currentUser = { role: 'patient', name: name, idCard: idCard };
-            closeSubLogin();
-            document.getElementById('login-section').classList.add('hidden');
-            document.getElementById('role-badge').innerText = `ผู้ใช้งาน: ${name} (เลขบัตร: ${idCard})`;
-            renderUserCatalog();
         }
 
         function handleStaffLogin(e) {
             e.preventDefault();
             let pass = document.getElementById('staff-password').value;
-
             if (pass === 'admin1234') {
-                currentUser = { role: 'staff', name: 'เจ้าหน้าที่อนามัย', idCard: '-' };
-                closeSubLogin();
-                document.getElementById('login-section').classList.add('hidden');
-                document.getElementById('role-badge').innerText = 'สิทธิ์: เจ้าหน้าที่อนามัย (Admin)';
-                renderStaffDashboard();
+                alert('เข้าสู่ระบบเจ้าหน้าที่ รพ.สต. ทับใต้ สำเร็จ!');
+                // สามารถเปลี่ยนหน้าไปส่วนจัดการอุปกรณ์ได้ที่นี่
             } else {
-                alert('รหัสผ่านเจ้าหน้าที่ไม่ถูกต้อง! (รหัสผ่านเริ่มต้นคือ admin1234)');
+                alert('รหัสผ่านไม่ถูกต้อง (รหัสผ่านทดสอบ: admin1234)');
             }
         }
 
-        function handleLogout() {
-            currentUser = { role: '', name: '', idCard: '' };
-            document.getElementById('login-section').classList.remove('hidden');
-            document.getElementById('main-content').innerHTML = '';
-        }
-
-        function renderUserCatalog() {
-            let myRequests = requests.filter(r => r.idCard === currentUser.idCard);
-            let html = `
-                <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-800">รายการอุปกรณ์ทางการแพทย์</h3>
-                        <p class="text-sm text-slate-500">ยินดีต้อนรับคุณ ${currentUser.name} เลือกอุปกรณ์ที่ต้องการยืมใช้งาน</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-8">
-                    <h4 class="font-bold text-slate-800 text-base mb-4"><i class="fa-solid fa-clock-rotate-left text-teal-600 mr-2"></i>ประวัติและสถานะการขอยืมของคุณ</h4>
-            `;
-
-            if (myRequests.length === 0) {
-                html += `<p class="text-sm text-slate-400">คุณยังไม่มีประวัติการขอยืมอุปกรณ์ในระบบ</p>`;
-            } else {
-                html += `
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse text-sm">
-                            <thead>
-                                <tr class="bg-slate-50 text-slate-500 text-xs uppercase font-semibold border-b border-slate-200">
-                                    <th class="p-3">อุปกรณ์</th>
-                                    <th class="p-3">กำหนดคืน</th>
-                                    <th class="p-3">สถานะ</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100">
-                `;
-                myRequests.forEach(req => {
-                    let badge = req.status === 'รอดำเนินการ' ? 'bg-amber-50 text-amber-700 border-amber-200' : (req.status === 'กำลังยืม' ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-slate-100 text-slate-600 border-slate-200');
-                    html += `
-                        <tr>
-                            <td class="p-3 font-medium text-slate-800">${req.eqName}</td>
-                            <td class="p-3 text-slate-600">${req.dueDate}</td>
-                            <td class="p-3"><span class="px-2.5 py-1 rounded-full text-xs font-semibold border ${badge}">${req.status}</span></td>
-                        </tr>
-                    `;
-                });
-                html += `</tbody></table></div>`;
-            }
-
-            html += `</div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">`;
-
-            equipments.forEach(eq => {
-                let isAvailable = eq.available > 0;
-                let badgeBg = isAvailable ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-red-50 text-red-700 border-red-200';
-                let badgeText = isAvailable ? `ว่าง (${eq.available}/${eq.total})` : 'หมดชั่วคราว';
-                let btnState = isAvailable ? '' : 'disabled bg-slate-200 text-slate-400 cursor-not-allowed';
-                let btnClass = isAvailable ? 'bg-teal-600 hover:bg-teal-700 text-white shadow-md' : '';
-
-                html += `
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition">
-                        <div class="p-5">
-                            <div class="w-12 h-12 bg-teal-50 text-teal-600 rounded-xl flex items-center justify-center text-2xl mb-4">
-                                <i class="fa-solid ${eq.icon}"></i>
-                            </div>
-                            <h4 class="font-bold text-slate-800 text-base mb-1">${eq.name}</h4>
-                            <p class="text-xs text-slate-500 mb-4 h-10 line-clamp-2">${eq.desc}</p>
-                            <div class="flex items-center justify-between text-xs font-semibold">
-                                <span class="text-slate-600">สถานะคลัง:</span>
-                                <span class="px-2.5 py-1 rounded-full border ${badgeBg}">${badgeText}</span>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-slate-50 border-t border-slate-100">
-                            <button onclick="openBorrowModal(${eq.id})" ${btnState} class="w-full py-2.5 px-4 rounded-xl text-sm font-semibold transition ${btnClass}">
-                                ${isAvailable ? 'ขอยืมอุปกรณ์นี้' : 'ไม่สามารถยืมได้'}
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-
-            html += `</div>`;
-            document.getElementById('main-content').innerHTML = html;
-        }
-
-        function renderStaffDashboard() {
-            let totalEq = equipments.reduce((sum, item) => sum + item.total, 0);
-            let borrowedCount = requests.filter(r => r.status === 'กำลังยืม').length;
-            let pendingCount = requests.filter(r => r.status === 'รอดำเนินการ').length;
-
-            let html = `
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-800">แดชบอร์ดจัดการระบบ (เจ้าหน้าที่ รพ.สต.)</h3>
-                        <p class="text-sm text-slate-500">ตรวจสอบคำขอ ยืนยันการยืม-คืน และบริหารคลังอุปกรณ์</p>
-                    </div>
-                    <button onclick="openAddModal()" class="px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-semibold shadow-md transition flex items-center gap-2">
-                        <i class="fa-solid fa-plus"></i> เพิ่มอุปกรณ์ใหม่
-                    </button>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
-                        <div class="w-14 h-14 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center text-2xl">
-                            <i class="fa-solid fa-boxes-stacked"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-500 font-medium">อุปกรณ์ทั้งหมดในคลัง</p>
-                            <h4 class="text-2xl font-bold text-slate-800">${totalEq} ชิ้น</h4>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
-                        <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-2xl">
-                            <i class="fa-solid fa-clock-rotate-left"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-500 font-medium">รอดำเนินการอนุมัติ</p>
-                            <h4 class="text-2xl font-bold text-slate-800">${pendingCount} รายการ</h4>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
-                        <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl">
-                            <i class="fa-solid fa-hand-holding-medical"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-500 font-medium">กำลังถูกยืมใช้งาน</p>
-                            <h4 class="text-2xl font-bold text-slate-800">${borrowedCount} รายการ</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
-                    <div class="p-6 border-b border-slate-200">
-                        <h4 class="font-bold text-slate-800 text-base">รายการคำขอและสถานะการยืม-คืน</h4>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-50 text-slate-500 text-xs uppercase font-semibold border-b border-slate-200">
-                                    <th class="p-4">ผู้ขอยืม / เลขบัตร</th>
-                                    <th class="p-4">อุปกรณ์</th>
-                                    <th class="p-4">เบอร์โทรศัพท์</th>
-                                    <th class="p-4">กำหนดคืน</th>
-                                    <th class="p-4">สถานะ</th>
-                                    <th class="p-4 text-right">การจัดการ</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100 text-sm">
-            `;
-
-            if (requests.length === 0) {
-                html += `<tr><td colspan="6" class="p-6 text-center text-slate-400">ยังไม่มีประวัติคำขอในระบบ</td></tr>`;
-            } else {
-                requests.forEach(req => {
-                    let statusBadge = '';
-                    if (req.status === 'รอดำเนินการ') statusBadge = 'bg-amber-50 text-amber-700 border-amber-200';
-                    else if (req.status === 'กำลังยืม') statusBadge = 'bg-blue-50 text-blue-700 border-blue-200';
-                    else statusBadge = 'bg-slate-100 text-slate-600 border-slate-200';
-
-                    let actionBtns = '';
-                    if (req.status === 'รอดำเนินการ') {
-                        actionBtns = `
-                            <button onclick="updateRequestStatus(${req.id}, 'กำลังยืม')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold shadow transition">อนุมัติ</button>
-                            <button onclick="updateRequestStatus(${req.id}, 'ปฏิเสธ')" class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-semibold shadow transition">ปฏิเสธ</button>
-                        `;
-                    } else if (req.status === 'กำลังยืม') {
-                        actionBtns = `
-                            <button onclick="returnEquipment(${req.id})" class="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white rounded-lg text-xs font-semibold shadow transition">รับคืนอุปกรณ์</button>
-                        `;
-                    } else {
-                        actionBtns = `<span class="text-xs text-slate-400">เสร็จสิ้น</span>`;
-                    }
-
-                    html += `
-                        <tr class="hover:bg-slate-50/50 transition">
-                            <td class="p-4">
-                                <div class="font-semibold text-slate-800">${req.name}</div>
-                                <div class="text-xs text-slate-400">บัตร: ${req.idCard || '-'}</div>
-                            </td>
-                            <td class="p-4 text-slate-600">${req.eqName}</td>
-                            <td class="p-4 text-slate-600">${req.phone}</td>
-                            <td class="p-4 text-slate-600">${req.dueDate}</td>
-                            <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold border ${statusBadge}">${req.status}</span></td>
-                            <td class="p-4 text-right space-x-2">${actionBtns}</td>
-                        </tr>
-                    `;
-                });
-            }
-
-            html += `</tbody></table></div></div>`;
-            document.getElementById('main-content').innerHTML = html;
-        }
-
-        function openBorrowModal(eqId) {
-            let eq = equipments.find(e => e.id === eqId);
-            document.getElementById('modal-eq-id').value = eq.id;
-            document.getElementById('modal-eq-name').value = eq.name;
-            document.getElementById('borrower-name').value = currentUser.name;
-            document.getElementById('borrower-idcard').value = currentUser.idCard;
-            document.getElementById('borrower-phone').value = '';
-            document.getElementById('borrower-duedate').value = '';
-            document.getElementById('borrow-modal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('borrow-modal').classList.add('hidden');
-        }
-
-        function submitBorrowRequest(e) {
+        function handlePatientLogin(e) {
             e.preventDefault();
-            let eqId = parseInt(document.getElementById('modal-eq-id').value);
-            let eq = equipments.find(e => e.id === eqId);
-
-            let newReq = {
-                id: Date.now(),
-                eqId: eqId,
-                eqName: eq.name,
-                name: currentUser.name,
-                idCard: currentUser.idCard,
-                phone: document.getElementById('borrower-phone').value,
-                dueDate: document.getElementById('borrower-duedate').value,
-                status: 'รอดำเนินการ'
-            };
-
-            requests.push(newReq);
-            closeModal();
-            alert('ส่งคำขอยืมอุปกรณ์สำเร็จ เจ้าหน้าที่กำลังตรวจสอบข้อมูลครับ');
-            renderUserCatalog();
-        }
-
-        function openAddModal() {
-            document.getElementById('new-name').value = '';
-            document.getElementById('new-desc').value = '';
-            document.getElementById('new-total').value = '1';
-            document.getElementById('add-eq-modal').classList.remove('hidden');
-        }
-
-        function closeAddModal() {
-            document.getElementById('add-eq-modal').classList.add('hidden');
-        }
-
-        function addNewEquipment(e) {
-            e.preventDefault();
-            let name = document.getElementById('new-name').value;
-            let desc = document.getElementById('new-desc').value;
-            let total = parseInt(document.getElementById('new-total').value);
-            let icon = document.getElementById('new-icon').value;
-
-            let newEq = {
-                id: Date.now(),
-                name: name,
-                desc: desc,
-                total: total,
-                available: total,
-                icon: icon
-            };
-
-            equipments.push(newEq);
-            closeAddModal();
-            alert('เพิ่มอุปกรณ์ใหม่เข้าคลังสำเร็จ!');
-            renderStaffDashboard();
-        }
-
-        function updateRequestStatus(reqId, newStatus) {
-            let req = requests.find(r => r.id === reqId);
-            req.status = newStatus;
-            if (newStatus === 'กำลังยืม') {
-                let eq = equipments.find(e => e.id === req.eqId);
-                if (eq && eq.available > 0) eq.available--;
+            let idCard = document.getElementById('patient-idcard').value;
+            if (idCard.length !== 13) {
+                alert('กรุณากรอกเลขบัตรประชาชนให้ครบ 13 หลัก');
+                return;
             }
-            renderStaffDashboard();
+            alert('เข้าสู่ระบบประชาชนสำเร็จ!');
         }
 
-        function returnEquipment(reqId) {
-            let req = requests.find(r => r.id === reqId);
-            req.status = 'คืนแล้ว';
-            let eq = equipments.find(e => e.id === req.eqId);
-            if (eq) eq.available++;
-            renderStaffDashboard();
+        function handleRegister(e) {
+            e.preventDefault();
+            alert('ลงทะเบียนสมาชิกใหม่สำเร็จ!');
+            switchTab('patient');
+        }
+
+        function switchView(view) {
+            alert('ท่านอยู่ในหน้าเข้าสู่ระบบแล้ว');
         }
     </script>
 </body>
