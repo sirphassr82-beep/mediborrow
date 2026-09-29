@@ -57,7 +57,7 @@
     <!-- เนื้อหาหลัก (Main Content) -->
     <main class="flex-grow flex items-center justify-center px-4 py-8">
         
-        <!-- 1. ส่วนหน้าล็อกอิน / สมัครสมาชิก (ตรงกับรูปที่ 1) -->
+        <!-- 1. ส่วนหน้าล็อกอิน / สมัครสมาชิก -->
         <div id="view-auth" class="w-full max-w-xl">
             <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden fade-in">
                 <!-- Tabs -->
@@ -139,7 +139,7 @@
                         </div>
                     </div>
 
-                    <!-- สมัครสมาชิกใหม่ (ตรงกับรูปที่ 1) -->
+                    <!-- สมัครสมาชิกใหม่ -->
                     <div id="content-register" class="space-y-5">
                         <div class="p-3.5 bg-teal-50/60 border border-teal-100 rounded-2xl flex items-start gap-3">
                             <div class="text-teal-600 text-lg mt-0.5"><i class="fa-solid fa-user-plus"></i></div>
@@ -214,7 +214,7 @@
             </div>
         </div>
 
-        <!-- 2. ส่วนหน้า Dashboard หลัก (ตรงกับรูปที่ 2 ที่จะแสดงหลังสมัครสำเร็จ) -->
+        <!-- 2. ส่วนหน้า Dashboard หลัก -->
         <div id="view-dashboard" class="w-full max-w-5xl hidden space-y-6 fade-in">
             
             <!-- แถบข้อมูลผู้ใช้งานด้านบน -->
@@ -341,7 +341,7 @@
             showDashboard('คุณประชาชน', phone);
         }
 
-        // ฟังก์ชันสมัครสมาชิก ตรวจสอบเงื่อนไขครบแล้วเด้งไปหน้า Dashboard ทันที
+        // ฟังก์ชันสมัครสมาชิก ตรวจสอบเงื่อนไขครบแล้วเปลี่ยนหน้าไป Dashboard ทันทีโดยไม่ค้าง
         function handleRegister(e) {
             e.preventDefault();
             let isValid = true;
@@ -367,7 +367,6 @@
                 isValid = false;
             }
 
-            // ตรวจสอบตำบลให้อยู่ในอำเภอหัวหินเท่านั้น
             const huahinSubdistricts = ['ทับใต้', 'หนองแก', 'หินเหล็กไฟ', 'หนองพลับ', 'หัวหิน', 'ห้วยสัตว์ใหญ่', 'บ่อฝ้าย'];
             let isHuaHin = huahinSubdistricts.some(sub => subdistrict.includes(sub));
             
@@ -383,8 +382,7 @@
 
             if (!isValid) return;
 
-            // แจ้งเตือนสำเร็จและเปลี่ยนหน้าไป Dashboard ตามรูปที่ 2
-            alert('ลงทะเบียนสำเร็จ! เข้าสู่ระบบเรียบร้อยแล้ว');
+            // เปลี่ยนหน้าไป Dashboard ทันทีโดยไม่ใช้ alert() ขัดจังหวะ
             showDashboard(name || 'คุณสมบูรณ์', phone);
         }
 
@@ -395,7 +393,6 @@
             document.getElementById('display-name').innerText = name;
             document.getElementById('display-phone').innerText = phone;
 
-            // เปลี่ยน Header ขวาให้เป็นปุ่มข้อมูลผู้ใช้เหมือนรูปที่ 2
             document.getElementById('header-auth-area').innerHTML = `
                 <div class="flex items-center gap-3">
                     <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-teal-50 text-teal-800 font-medium text-xs rounded-full border border-teal-200">
