@@ -30,7 +30,7 @@
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between relative">
 
     <!-- ส่วนหัวเว็บไซต์ (Header) -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <header id="main-header" class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-teal-600 text-white rounded-xl flex items-center justify-center text-xl shadow-md">
@@ -221,7 +221,7 @@
             </div>
         </div>
 
-        <!-- 2. ส่วนหน้า Dashboard หลัก -->
+        <!-- 2. ส่วนหน้า Dashboard ประชาชน -->
         <div id="view-dashboard" class="w-full max-w-5xl hidden space-y-6 fade-in">
             
             <!-- ส่วนที่ 1: แถบข้อมูลผู้ใช้งานด้านบน -->
@@ -424,6 +424,88 @@
 
         </div>
 
+        <!-- 3. ส่วนหน้า Dashboard เจ้าหน้าที่ รพ.สต. (ตามภาพตัวอย่าง) -->
+        <div id="view-staff-dashboard" class="w-full max-w-7xl hidden space-y-6 fade-in">
+            
+            <!-- ส่วนที่ 1: แบนเนอร์หัวข้อคลังอุปกรณ์ และปุ่มเพิ่มอุปกรณ์ -->
+            <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+                <div class="space-y-1">
+                    <h1 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
+                        <i class="fa-solid fa-boxes-stacked text-teal-600"></i> คลังอุปกรณ์การแพทย์ รพ.สต. ทับใต้
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-500">ทะเบียนพัสดุและอุปกรณ์กายภาพบำบัดสำหรับยืมดูแลผู้ป่วยติดเตียงและผู้สูงอายุในตำบลทับใต้</p>
+                </div>
+                <button onclick="alert('เปิดฟอร์มเพิ่มอุปกรณ์ใหม่')" class="px-5 py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-2xl shadow-lg shadow-teal-600/20 transition flex items-center gap-2 text-xs sm:text-sm">
+                    <i class="fa-solid fa-plus"></i> เพิ่มอุปกรณ์ใหม่
+                </button>
+            </div>
+
+            <!-- ส่วนที่ 2: แถบแจ้งเตือนคำขอยืมรอดำเนินการ (1 รายการ) -->
+            <div class="bg-sky-50/70 border border-sky-200 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-sky-600 text-white rounded-2xl flex items-center justify-center text-xl shadow">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-sky-900">คำขอยืมรอดำเนินการ</h3>
+                        <p class="text-xs text-sky-700">มีประชาชนยื่นขอจองอุปกรณ์ออนไลน์</p>
+                    </div>
+                </div>
+                <button onclick="alert('แสดงหน้ารายการคำขอยืมรอดำเนินการ (1 รายการ)')" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-2xl shadow transition text-xs flex items-center gap-2">
+                    <span>1 รายการ</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- ส่วนที่ 3: การ์ดสรุปสถิติต่างๆ 4 กล่อง -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- กล่อง 1 -->
+                <div class="bg-white border-2 border-teal-500/80 rounded-3xl p-5 shadow-sm space-y-2 relative">
+                    <div class="flex items-center justify-between text-slate-500 text-xs font-semibold">
+                        <span>อุปกรณ์ทั้งหมด</span>
+                        <i class="fa-solid fa-layer-group text-teal-600 text-base"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">12 <span class="text-xs font-normal text-slate-500">ชิ้น</span></h3>
+                    </div>
+                </div>
+
+                <!-- กล่อง 2 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-2">
+                    <div class="flex items-center justify-between text-slate-500 text-xs font-semibold">
+                        <span>พร้อมใช้งาน (อยู่ในคลัง)</span>
+                        <i class="fa-regular fa-circle-check text-emerald-600 text-base"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">4 <span class="text-xs font-normal text-slate-500">ชิ้น</span></h3>
+                    </div>
+                </div>
+
+                <!-- กล่อง 3 -->
+                    <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-2">
+                    <div class="flex items-center justify-between text-slate-500 text-xs font-semibold">
+                        <span>กำลังยืม (ผู้ป่วยใช้งาน)</span>
+                        <i class="fa-regular fa-clock text-amber-500 text-base"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">7 <span class="text-xs font-normal text-slate-500">ชิ้น</span></h3>
+                    </div>
+                </div>
+
+                <!-- กล่อง 4 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-2">
+                    <div class="flex items-center justify-between text-slate-500 text-xs font-semibold">
+                        <span>รออนุมัติคำขอ</span>
+                        <i class="fa-solid fa-circle-exclamation text-sky-600 text-base"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">1 <span class="text-xs font-normal text-slate-500">ชิ้น</span></h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </main>
 
     <!-- ป๊อปอัปยื่นคำขอยืมออนไลน์ (จองอุปกรณ์) -->
@@ -541,6 +623,8 @@
             document.getElementById('content-staff').classList.add('hidden');
             document.getElementById('content-patient').classList.add('hidden');
             document.getElementById('content-register').classList.add('hidden');
+            document.getElementById('view-dashboard').classList.add('hidden');
+            document.getElementById('view-staff-dashboard').classList.add('hidden');
 
             document.getElementById('tab-staff').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900";
             document.getElementById('tab-patient').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900";
@@ -560,7 +644,64 @@
 
         function handleStaffLogin(e) {
             e.preventDefault();
-            alert('เข้าสู่ระบบเจ้าหน้าที่ รพ.สต. ทับใต้ สำเร็จ!');
+            
+            // ซ่อนหน้าล็อกอิน และแสดง Dashboard เจ้าหน้าที่ รพ.สต.
+            document.getElementById('view-auth').classList.add('hidden');
+            document.getElementById('view-staff-dashboard').classList.remove('hidden');
+
+            // เปลี่ยนแถบ Header ด้านบนให้เป็นเมนูของเจ้าหน้าที่ตามภาพตัวอย่าง
+            document.getElementById('main-header').innerHTML = `
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-teal-600 text-white rounded-xl flex items-center justify-center text-xl shadow-md">
+                            <i class="fa-solid fa-kit-medical"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-slate-900 text-base">MediBorrow</span>
+                                <span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-semibold rounded-full border border-emerald-200">รพ.สต. ทับใต้</span>
+                            </div>
+                            <p class="text-[11px] text-slate-500">โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ อ.หัวหิน</p>
+                        </div>
+                    </div>
+
+                    <!-- เมนูบาร์เจ้าหน้าที่ รพ.สต. -->
+                    <div class="hidden lg:flex items-center gap-1 text-xs font-semibold text-slate-600">
+                        <button onclick="alert('หน้าคลังอุปกรณ์')" class="px-3.5 py-2 bg-teal-50 text-teal-700 rounded-xl flex items-center gap-1.5 border border-teal-200 shadow-sm">
+                            <i class="fa-solid fa-boxes-stacked"></i> คลังอุปกรณ์
+                        </button>
+                        <button onclick="alert('หน้ารายการยืม-คืน')" class="px-3.5 py-2 hover:bg-slate-100 rounded-xl flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-right-left"></i> รายการยืม-คืน
+                        </button>
+                        <button onclick="alert('หน้าข้อมูลผู้ยืม')" class="px-3.5 py-2 hover:bg-slate-100 rounded-xl flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-users"></i> ข้อมูลผู้ยืม
+                        </button>
+                        <button onclick="alert('หน้าเจ้าหน้าที่')" class="px-3.5 py-2 hover:bg-slate-100 rounded-xl flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-user-shield"></i> เจ้าหน้าที่
+                        </button>
+                        <button onclick="alert('รีเซ็ตข้อมูลเดโม')" class="px-3.5 py-2 bg-amber-50 text-amber-700 border border-amber-200 rounded-xl flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-rotate"></i> รีเซ็ตข้อมูลเดโม
+                        </button>
+                        <button onclick="alert('QR ประชาชน')" class="px-3.5 py-2 bg-slate-100 text-slate-700 rounded-xl flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-qrcode"></i> QR ประชาชน
+                        </button>
+                    </div>
+
+                    <!-- ข้อมูลโปรไฟล์เจ้าหน้าที่และปุ่ม Export -->
+                    <div class="flex items-center gap-2">
+                        <button onclick="alert('กำลังดาวน์โหลดรายงาน Export...')" class="hidden sm:flex items-center gap-1.5 px-3 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-xl text-xs font-semibold hover:bg-emerald-100 transition">
+                            <i class="fa-solid fa-file-excel"></i> Export
+                        </button>
+                        <div class="flex items-center gap-2 px-3 py-1.5 bg-slate-100 text-slate-800 rounded-2xl border border-slate-200 text-xs font-bold">
+                            <i class="fa-solid fa-user-tie"></i> นางสาวศิริภัสสร สา... <span class="px-1.5 py-0.5 bg-teal-600 text-white rounded-md text-[10px]">จนท.</span>
+                        </div>
+                        <button onclick="handleLogout()" class="w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl flex items-center justify-center transition shadow-sm" title="ออกจากระบบ">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function handlePatientLogin(e) {
@@ -642,14 +783,7 @@
         }
 
         function handleLogout() {
-            document.getElementById('view-dashboard').classList.add('hidden');
-            document.getElementById('view-auth').classList.remove('hidden');
-            document.getElementById('header-auth-area').innerHTML = `
-                <button onclick="switchTab('patient')" class="px-4 py-2 bg-slate-50 hover:bg-slate-100 text-teal-700 border border-teal-200 font-medium text-xs rounded-xl transition flex items-center gap-2 shadow-sm">
-                    <i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ
-                </button>
-            `;
-            switchTab('register');
+            location.reload(); // รีเฟรชหน้าเว็บกลับสู่หน้าหลัก/หน้าล็อกอินปกติ
         }
 
         // ควบคุมการเปิด-ปิดป๊อปอัปจองอุปกรณ์
@@ -670,7 +804,7 @@
         function closeSuccessModal() {
             document.getElementById('success-modal').classList.add('hidden');
             
-            // อัปเดตสถานะของการ์ดอุปกรณ์ EQ003 เป็น "รออนุมัติคำขอยืม" ทันทีตามภาพตัวอย่าง
+            // อัปเดตสถานะของการ์ดอุปกรณ์ EQ003 เป็น "รออนุมัติคำขอยืม"
             document.getElementById('card-badge-eq003').innerHTML = `
                 <span class="px-2.5 py-1 bg-sky-50 text-sky-700 border border-sky-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
                     <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span> รออนุมัติคำขอยืม
