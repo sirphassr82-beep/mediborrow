@@ -214,10 +214,86 @@
             </div>
         </div>
 
-        <!-- 2. ส่วนหน้า Dashboard หลัก -->
+        <!-- 2. ส่วนหน้า Dashboard หลัก (จัดเรียงตามภาพที่คุณส่งมา) -->
         <div id="view-dashboard" class="w-full max-w-5xl hidden space-y-6 fade-in">
             
-            <!-- ส่วนอุปกรณ์ที่พร้อมให้ยืมหรือกำลังยืม -->
+            <!-- ส่วนที่ 1: แถบข้อมูลผู้ใช้งานด้านบน -->
+            <div class="bg-emerald-50/60 border border-emerald-200/80 rounded-3xl p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
+                <div class="flex items-center gap-4 text-center md:text-left">
+                    <div class="w-14 h-14 bg-emerald-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+                            <span class="px-2.5 py-0.5 bg-white text-emerald-800 text-xs font-semibold rounded-full border border-emerald-300">ประชาชนลงทะเบียนแล้ว</span>
+                            <span class="text-xs text-slate-500 font-mono">รหัส: <span id="user-code">40a1c8ee-57cd-4cdc-a70f-3a2f1c59846e</span></span>
+                        </div>
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 mt-0.5">ยินดีต้อนรับ <span id="display-name">คุณนุนิ</span></h2>
+                        <p class="text-xs text-slate-600">เบอร์โทร: <span id="display-phone">0840905124</span> • ตำบลทับใต้ อ.หัวหิน</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 w-full md:w-auto justify-center">
+                    <button onclick="alert('ระบบกำลังเชื่อมต่อสายด่วนขอยืมอุปกรณ์...')" class="flex-1 md:flex-none px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl shadow transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone-volume"></i> โทรขอยืมอุปกรณ์
+                    </button>
+                    <button onclick="handleLogout()" class="px-4 py-2.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-semibold rounded-xl shadow-sm transition flex items-center gap-2">
+                        <i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ
+                    </button>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 2: กล่องแบนเนอร์หลักคลังอุปกรณ์ -->
+            <div class="bg-slate-900 rounded-3xl shadow-2xl p-6 sm:p-10 text-white relative overflow-hidden border border-slate-800">
+                <div class="max-w-2xl space-y-4 relative z-10">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-3 py-1 bg-teal-500/20 text-teal-300 text-xs font-medium rounded-full border border-teal-500/30 flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-[10px]"></i> บริการประชาชน • ยืมฟรีไม่มีค่าใช้จ่าย
+                        </span>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 text-xs font-medium rounded-full border border-slate-700 flex items-center gap-1.5">
+                            <i class="fa-regular fa-clock text-[10px]"></i> จันทร์- ศุกร์: 08:30 - 16:30 น.
+                        </span>
+                    </div>
+
+                    <div>
+                        <p class="text-xs font-medium text-teal-400 mb-1">โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ (รพ.สต. ทับใต้) อ.หัวหิน จ.ประจวบคีรีขันธ์</p>
+                        <h1 class="text-2xl sm:text-4xl font-bold tracking-tight" style="font-family: serif;">คลังอุปกรณ์การแพทย์ชุมชน รพ.สต. ทับใต้</h1>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        ตรวจเช็กสถานะเตียงผู้ป่วย รถเข็นวีลแชร์ ถังออกซิเจน และไม้เท้าช่วยเดิน ที่พร้อมให้ยืมไปดูแลผู้ป่วยติดบ้านติดเตียงและผู้สูงอายุในตำบลทับใต้แบบเรียลไทม์
+                    </p>
+
+                    <div class="pt-2">
+                        <a href="tel:032510123" class="inline-flex items-center gap-2 px-5 py-3 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-xl text-xs sm:text-sm shadow-lg shadow-teal-500/25 transition">
+                            <i class="fa-solid fa-phone"></i> โทรสอบถาม รพ.สต. ทับใต้ (032-510-123)
+                        </a>
+                        <p class="text-[11px] text-slate-400 mt-2">* เจ้าหน้าที่พร้อมให้คำปรึกษาและประสานงาน อสม. ในวันเวลาราชการ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 3: กล่องเอกสารและหลักฐาน -->
+            <div class="bg-white rounded-3xl shadow-lg border border-slate-200/80 p-6 sm:p-8 space-y-4">
+                <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-file-shield text-teal-600"></i> เอกสารและหลักฐานสำหรับขอยืมอุปกรณ์ (รพ.สต. ทับใต้)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 bg-slate-50 border border-slate-200/60 rounded-2xl flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold flex-shrink-0 text-xs">1</div>
+                        <p class="text-slate-700 leading-relaxed">สำเนาบัตรประชาชนของผู้ป่วย และผู้ขอยืม (ญาติ/ผู้ดูแลในพื้นที่ ต.ทับใต้)</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 border border-slate-200/60 rounded-2xl flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold flex-shrink-0 text-xs">2</div>
+                        <p class="text-slate-700 leading-relaxed">สำเนาทะเบียนบ้าน หรือหนังสือรับรองจาก อสม. ในตำบลทับใต้</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 border border-slate-200/60 rounded-2xl flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold flex-shrink-0 text-xs">3</div>
+                        <p class="text-slate-700 leading-relaxed">ใบรับรองแพทย์ หรือประวัติการรักษาจากโรงพยาบาลหัวหิน (ถ้ามี)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 4: อุปกรณ์ที่พร้อมให้ยืมหรือกำลังยืม (อยู่ถัดลงมาด้านล่างสุดตามภาพ) -->
             <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 p-6 sm:p-8 space-y-6">
                 <!-- หัวข้อและปุ่มรีเฟรช -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
@@ -251,7 +327,7 @@
 
                 <!-- รายการ์ดอุปกรณ์ (Grid) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                    <!-- การ์ดที่ 1 (ใช้รูปภาพจากลิงก์ของคุณ) -->
+                    <!-- การ์ดที่ 1 -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
@@ -271,7 +347,7 @@
                         </div>
                     </div>
 
-                    <!-- การ์ดที่ 2 (ใช้รูปภาพจากลิงก์ของคุณ) -->
+                    <!-- การ์ดที่ 2 -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
