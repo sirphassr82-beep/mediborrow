@@ -214,7 +214,7 @@
             </div>
         </div>
 
-        <!-- 2. ส่วนหน้า Dashboard หลัก (พร้อมแสดงผลตามรูปที่แนบมา) -->
+        <!-- 2. ส่วนหน้า Dashboard หลัก -->
         <div id="view-dashboard" class="w-full max-w-5xl hidden space-y-6 fade-in">
             
             <!-- แถบข้อมูลผู้ใช้งานด้านบน -->
@@ -242,7 +242,28 @@
                 </div>
             </div>
 
-            <!-- ส่วนอุปกรณ์ที่พร้อมให้ยืมหรือกำลังยืม (ตามรูปที่แนบมา) -->
+            <!-- กล่องเอกสารและหลักฐาน (ย้ายขึ้นมาไว้ด้านบนก่อนเมนูปะปนการยืม) -->
+            <div class="bg-white rounded-3xl shadow-lg border border-slate-200/80 p-6 sm:p-8 space-y-4">
+                <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-file-shield text-teal-600"></i> เอกสารและหลักฐานสำหรับการขอยืมอุปกรณ์ (รพ.สต. ทับใต้)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 bg-slate-50 border border-slate-200/60 rounded-2xl flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold flex-shrink-0 text-xs">1</div>
+                        <p class="text-slate-700 leading-relaxed">สำเนาบัตรประชาชนของผู้ป่วย และผู้ขอยืม (ญาติ/ผู้ดูแลในพื้นที่ ต.ทับใต้)</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 border border-slate-200/60 rounded-2xl flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold flex-shrink-0 text-xs">2</div>
+                        <p class="text-slate-700 leading-relaxed">สำเนาทะเบียนบ้าน หรือหนังสือรับรองจาก อสม. ในตำบลทับใต้</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 border border-slate-200/60 rounded-2xl flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold flex-shrink-0 text-xs">3</div>
+                        <p class="text-slate-700 leading-relaxed">ใบรับรองแพทย์ หรือประวัติการรักษาจากโรงพยาบาลหัวหิน (ถ้ามี)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนอุปกรณ์ที่พร้อมให้ยืมหรือกำลังยืม -->
             <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 p-6 sm:p-8 space-y-6">
                 <!-- หัวข้อและปุ่มรีเฟรช -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
@@ -314,27 +335,6 @@
                             <span class="text-slate-500">รหัส: EQ002</span>
                             <span class="px-3 py-1.5 bg-slate-100 text-slate-600 font-semibold rounded-xl">กำลังยืมอยู่</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- กล่องเอกสารและหลักฐาน -->
-            <div class="bg-white rounded-3xl shadow-lg border border-slate-200/80 p-6 sm:p-8 space-y-4">
-                <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
-                    <i class="fa-solid fa-file-shield text-teal-600"></i> เอกสารและหลักฐานสำหรับขอยืมอุปกรณ์ (รพ.สต. ทับใต้)
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                    <div class="p-4 bg-slate-50 border border-slate-200/60 rounded-2xl flex items-start gap-3">
-                        <div class="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold flex-shrink-0 text-xs">1</div>
-                        <p class="text-slate-700 leading-relaxed">สำเนาบัตรประชาชนของผู้ป่วย และผู้ขอยืม (ญาติ/ผู้ดูแลในพื้นที่ ต.ทับใต้)</p>
-                    </div>
-                    <div class="p-4 bg-slate-50 border border-slate-200/60 rounded-2xl flex items-start gap-3">
-                        <div class="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold flex-shrink-0 text-xs">2</div>
-                        <p class="text-slate-700 leading-relaxed">สำเนาทะเบียนบ้าน หรือหนังสือรับรองจาก อสม. ในตำบลทับใต้</p>
-                    </div>
-                    <div class="p-4 bg-slate-50 border border-slate-200/60 rounded-2xl flex items-start gap-3">
-                        <div class="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold flex-shrink-0 text-xs">3</div>
-                        <p class="text-slate-700 leading-relaxed">ใบรับรองแพทย์ หรือประวัติการรักษาจากโรงพยาบาลหัวหิน (ถ้ามี)</p>
                     </div>
                 </div>
             </div>
