@@ -424,7 +424,7 @@
 
         </div>
 
-        <!-- 3. ส่วนหน้า Dashboard เจ้าหน้าที่ รพ.สต. (อัปเดตเพิ่มรายการด้านล่างตามภาพ) -->
+        <!-- 3. ส่วนหน้า Dashboard เจ้าหน้าที่ รพ.สต. (แสดงรายการเตียงและรถเข็นครบถ้วนตามภาพ) -->
         <div id="view-staff-dashboard" class="w-full max-w-7xl hidden space-y-6 fade-in">
             
             <!-- ส่วนที่ 1: แบนเนอร์หัวข้อคลังอุปกรณ์ และปุ่มเพิ่มอุปกรณ์ -->
@@ -530,10 +530,10 @@
                     <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium rounded-xl transition">ไม้เท้า</button>
                 </div>
 
-                <!-- ตาราง/กริดแสดงรายการอุปกรณ์ (3 การ์ดตามภาพตัวอย่าง) -->
+                <!-- ตาราง/กริดแสดงรายการอุปกรณ์ (เตียง EQ001-EQ003 และ รถเข็น EQ101-EQ103) -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
                     
-                    <!-- การ์ดที่ 1 (EQ001) -->
+                    <!-- เตียง EQ001 -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
@@ -561,7 +561,7 @@
                         </div>
                     </div>
 
-                    <!-- การ์ดที่ 2 (EQ002) -->
+                    <!-- เตียง EQ002 -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
@@ -589,7 +589,7 @@
                         </div>
                     </div>
 
-                    <!-- การ์ดที่ 3 (EQ003 - รออนุมัติคำขอยืม) -->
+                    <!-- เตียง EQ003 -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
@@ -614,6 +614,90 @@
                             <div class="w-full py-2 bg-slate-100 text-slate-600 font-semibold rounded-xl text-center text-xs">
                                 อยู่ระหว่างการยืม
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- รถเข็น EQ101 -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">รถเข็น</span>
+                                <span class="px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> กำลังยืมอยู่
+                                </span>
+                            </div>
+                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
+                                <img src="https://image.makewebcdn.com/makeweb/m_1920x0/PMFzHCzxI/TAMedic/Wheelchair_TA_901_01.jpg" alt="รถเข็นนั่งวีลแชร์" class="w-full h-full object-contain">
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-sm">รถเข็นนั่งวีลแชร์พับได้ โครงชุบโครเมียม เบาะหนัง</h4>
+                        </div>
+                        <div class="space-y-3 pt-3 border-t border-slate-100">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-500">รหัส: EQ101</span>
+                                <div class="flex items-center gap-2 text-slate-400">
+                                    <button onclick="alert('แก้ไขอุปกรณ์ EQ101')" class="hover:text-teal-600 p-1 transition"><i class="fa-solid fa-pen"></i></button>
+                                    <button onclick="alert('ลบอุปกรณ์ EQ101')" class="hover:text-red-600 p-1 transition"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </div>
+                            <div class="w-full py-2 bg-slate-100 text-slate-600 font-semibold rounded-xl text-center text-xs">
+                                อยู่ระหว่างการยืม
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- รถเข็น EQ102 -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">รถเข็น</span>
+                                <span class="px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> กำลังยืมอยู่
+                                </span>
+                            </div>
+                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
+                                <img src="https://image.makewebcdn.com/makeweb/m_1920x0/PMFzHCzxI/TAMedic/Wheelchair_TA_901_01.jpg" alt="รถเข็นนั่งวีลแชร์" class="w-full h-full object-contain">
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-sm">รถเข็นนั่งวีลแชร์พับได้ โครงชุบโครเมียม เบาะหนัง</h4>
+                        </div>
+                        <div class="space-y-3 pt-3 border-t border-slate-100">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-500">รหัส: EQ102</span>
+                                <div class="flex items-center gap-2 text-slate-400">
+                                    <button onclick="alert('แก้ไขอุปกรณ์ EQ102')" class="hover:text-teal-600 p-1 transition"><i class="fa-solid fa-pen"></i></button>
+                                    <button onclick="alert('ลบอุปกรณ์ EQ102')" class="hover:text-red-600 p-1 transition"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </div>
+                            <div class="w-full py-2 bg-slate-100 text-slate-600 font-semibold rounded-xl text-center text-xs">
+                                อยู่ระหว่างการยืม
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- รถเข็น EQ103 (พร้อมใช้งาน) -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">รถเข็น</span>
+                                <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> พร้อมใช้งาน
+                                </span>
+                            </div>
+                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
+                                <img src="https://image.makewebcdn.com/makeweb/m_1920x0/PMFzHCzxI/TAMedic/Wheelchair_TA_901_01.jpg" alt="รถเข็นนั่งวีลแชร์" class="w-full h-full object-contain">
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-sm">รถเข็นนั่งวีลแชร์พับได้ โครงชุบโครเมียม เบาะหนัง</h4>
+                        </div>
+                        <div class="space-y-3 pt-3 border-t border-slate-100">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-500">รหัส: EQ103</span>
+                                <div class="flex items-center gap-2 text-slate-400">
+                                    <button onclick="alert('แก้ไขอุปกรณ์ EQ103')" class="hover:text-teal-600 p-1 transition"><i class="fa-solid fa-pen"></i></button>
+                                    <button onclick="alert('ลบอุปกรณ์ EQ103')" class="hover:text-red-600 p-1 transition"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </div>
+                            <button onclick="alert('บันทึกการยืมอุปกรณ์ EQ103')" class="w-full py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-semibold rounded-xl text-center text-xs transition flex items-center justify-center gap-1.5">
+                                <span>บันทึกการยืมอุปกรณ์นี้</span> <i class="fa-solid fa-arrow-right"></i>
+                            </button>
                         </div>
                     </div>
 
