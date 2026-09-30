@@ -190,14 +190,14 @@
                                 </label>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <div>
-                                        <input type="text" id="reg-houseNo" required value="14/2" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                        <input type="text" id="reg-houseNo" required value="14/2" placeholder="บ้านเลขที่" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
                                     </div>
                                     <div>
-                                        <input type="text" id="reg-village" required value="หมู่ 3" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                        <input type="text" id="reg-village" required value="หมู่ 3" placeholder="หมู่ที่" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="text" id="reg-subdistrict" required value="ทับใต้ อ.หัวหิน" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                                    <input type="text" id="reg-subdistrict" required value="ทับใต้ อ.หัวหิน" placeholder="ตำบล/อำเภอ" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
                                     <p id="err-subdistrict" class="text-[10px] text-red-500 mt-1 hidden">อนุญาตให้เฉพาะตำบลในอำเภอหัวหินเท่านั้น</p>
                                 </div>
                             </div>
@@ -263,7 +263,7 @@
 
                     <div>
                         <p class="text-xs font-medium text-teal-400 mb-1">โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ (รพ.สต. ทับใต้) อ.หัวหิน จ.ประจวบคีรีขันธ์</p>
-                        <h1 class="text-2xl sm:text-4xl font-bold tracking-tight" style="font-family: serif;">คลังอุปกรณ์การแพทย์ชุมชน รพ.สต. ทับใต้</h1>
+                        <h1 class="text-2xl sm:text-4xl font-bold tracking-tight">คลังอุปกรณ์การแพทย์ชุมชน รพ.สต. ทับใต้</h1>
                     </div>
 
                     <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -300,7 +300,7 @@
                 </div>
             </div>
 
-            <!-- ส่วนที่ 4: อุปกรณ์ที่พร้อมให้ยืมหรือกำลังยืม -->
+            <!-- ส่วนที่ 4: อุปกรณ์ที่พร้อมให้ยืมหรือกำลังยืม (รวมเตียงเดิม + ถังออกซิเจน 3 ถังใหม่) -->
             <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 p-6 sm:p-8 space-y-6">
                 <!-- หัวข้อและปุ่มรีเฟรช -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
@@ -308,7 +308,7 @@
                         <div class="w-8 h-8 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center">
                             <i class="fa-solid fa-boxes-stacked"></i>
                         </div>
-                        <h3 class="text-base font-bold text-slate-900">อุปกรณ์ที่พร้อมให้ยืมหรือกำลังยืม <span class="text-xs font-normal text-slate-500">(7 รายการในระบบ)</span></h3>
+                        <h3 class="text-base font-bold text-slate-900">อุปกรณ์ที่พร้อมให้ยืมหรือกำลังยืม <span class="text-xs font-normal text-slate-500">(6 รายการในระบบ)</span></h3>
                     </div>
                     <button onclick="alert('รีเฟรชข้อมูลคลังอุปกรณ์เรียบร้อยแล้ว')" class="self-start sm:self-auto text-xs font-semibold text-teal-600 hover:text-teal-700 flex items-center gap-1.5 transition">
                         <i class="fa-solid fa-rotate"></i> รีเฟรชข้อมูล
@@ -320,21 +320,20 @@
                     <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </span>
-                    <input type="text" placeholder="ค้นหาอุปกรณ์ที่ต้องการ เช่น เตียงผู้ป่วยไฟฟ้า, วีลแชร์, ถังออกซิเจน..." class="w-full bg-slate-50/50 border border-slate-200 rounded-2xl pl-11 pr-4 py-3 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
+                    <input type="text" placeholder="ค้นหาอุปกรณ์ที่ต้องการ เช่น เตียงผู้ป่วยไฟฟ้า, ถังออกซิเจน..." class="w-full bg-slate-50/50 border border-slate-200 rounded-2xl pl-11 pr-4 py-3 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
                 </div>
 
                 <!-- ปุ่มหมวดหมู่ (Tabs) -->
                 <div class="flex flex-wrap gap-2 pt-1">
                     <button class="px-4 py-2 bg-teal-600 text-white text-xs font-semibold rounded-xl shadow-sm transition">ทั้งหมด</button>
                     <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-medium rounded-xl transition">เตียง</button>
-                    <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-medium rounded-xl transition">รถเข็น</button>
                     <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-medium rounded-xl transition">ถังออกซิเจน</button>
-                    <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-medium rounded-xl transition">ไม้เท้า</button>
                 </div>
 
                 <!-- รายการ์ดอุปกรณ์ (Grid) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                    <!-- การ์ดที่ 1 (EQ001) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                    
+                    <!-- การ์ดที่ 1 (EQ001) - เตียง -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
@@ -343,7 +342,7 @@
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> กำลังยืมอยู่
                                 </span>
                             </div>
-                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 relative group p-2">
+                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
                                 <img src="https://cx.lnwfile.com/_/cx/_raw/kp/51/2v.jpg" alt="เตียงผู้ป่วยไฟฟ้า" class="w-full h-full object-contain">
                             </div>
                             <h4 class="font-bold text-slate-900 text-sm sm:text-base">เตียงผู้ป่วยไฟฟ้า 3 ฟังก์ชั่น FASICARE (FB-204H)</h4>
@@ -354,7 +353,7 @@
                         </div>
                     </div>
 
-                    <!-- การ์ดที่ 2 (EQ002) -->
+                    <!-- การ์ดที่ 2 (EQ002) - เตียง -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
@@ -363,7 +362,7 @@
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> กำลังยืมอยู่
                                 </span>
                             </div>
-                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 relative group p-2">
+                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
                                 <img src="https://cx.lnwfile.com/_/cx/_raw/kp/51/2v.jpg" alt="เตียงผู้ป่วยไฟฟ้า" class="w-full h-full object-contain">
                             </div>
                             <h4 class="font-bold text-slate-900 text-sm sm:text-base">เตียงผู้ป่วยไฟฟ้า 3 ฟังก์ชั่น FASICARE (FB-204H)</h4>
@@ -374,442 +373,101 @@
                         </div>
                     </div>
 
-                    <!-- การ์ดที่ 3 (EQ003 - เปลี่ยนสถานะได้แบบไดนามิก) -->
+                    <!-- การ์ดที่ 3 (EQ003) - เตียงพร้อมใช้งาน -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
                                 <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">เตียง</span>
-                                <div id="card-badge-eq003">
-                                    <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> พร้อมใช้งาน
-                                    </span>
-                                </div>
+                                <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> พร้อมใช้งาน
+                                </span>
                             </div>
-                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 relative group p-2">
+                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
                                 <img src="https://cx.lnwfile.com/_/cx/_raw/kp/51/2v.jpg" alt="เตียงผู้ป่วยไฟฟ้า" class="w-full h-full object-contain">
                             </div>
                             <h4 class="font-bold text-slate-900 text-sm sm:text-base">เตียงผู้ป่วยไฟฟ้า 3 ฟังก์ชั่น FASICARE (FB-204H)</h4>
                         </div>
                         <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
                             <span class="text-slate-500">รหัส: EQ003</span>
-                            <div id="card-action-eq003">
-                                <button onclick="openBookingModal()" class="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow transition flex items-center gap-1.5">
-                                    <i class="fa-solid fa-calendar-check"></i> ยื่นขอยืมออนไลน์ (จองอุปกรณ์) <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
+                            <button onclick="openBookingModal()" class="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow transition">ขอยืมอุปกรณ์นี้</button>
                         </div>
                     </div>
 
-                    <!-- การ์ดที่ 4 (EQ101 - รถเข็น กำลังยืมอยู่) -->
+                    <!-- การ์ดที่ 4 (EQ201) - ถังออกซิเจน (กำลังยืมอยู่) -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
-                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">รถเข็น</span>
+                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">ถังออกซิเจน</span>
                                 <span class="px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> กำลังยืมอยู่
                                 </span>
                             </div>
-                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 relative group p-2">
-                                <img src="https://image.makewebcdn.com/makeweb/m_1920x0/PMFzHCzxI/TAMedic/Wheelchair_TA_901_01.jpg" alt="รถเข็นนั่งวีลแชร์" class="w-full h-full object-contain">
+                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
+                                <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=600" alt="ถังออกซิเจนทางการแพทย์" class="w-full h-full object-contain">
                             </div>
-                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">รถเข็นนั่งวีลแชร์พับได้ โครงชุบโครเมียม เบาะหนัง</h4>
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">ถังออกซิเจนทางการแพทย์ 2 คิว พร้อมชุดเกจและรถเข็น</h4>
                         </div>
                         <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
-                            <span class="text-slate-500">รหัส: EQ101</span>
+                            <span class="text-slate-500">รหัส: EQ201</span>
                             <span class="px-3 py-1.5 bg-slate-100 text-slate-600 font-semibold rounded-xl">กำลังยืมอยู่</span>
                         </div>
                     </div>
-                </div>
-            </div>
 
-        </div>
-
-        <!-- 3. ส่วนหน้า Dashboard เจ้าหน้าที่ รพ.สต. (แสดงรายการเตียงและรถเข็นครบถ้วนตามภาพ) -->
-        <div id="view-staff-dashboard" class="w-full max-w-7xl hidden space-y-6 fade-in">
-            
-            <!-- ส่วนที่ 1: แบนเนอร์หัวข้อคลังอุปกรณ์ และปุ่มเพิ่มอุปกรณ์ -->
-            <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
-                <div class="space-y-1">
-                    <h1 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5">
-                        <i class="fa-solid fa-boxes-stacked text-teal-600"></i> คลังอุปกรณ์การแพทย์ รพ.สต. ทับใต้
-                    </h1>
-                    <p class="text-xs sm:text-sm text-slate-500">ทะเบียนพัสดุและอุปกรณ์กายภาพบำบัดสำหรับยืมดูแลผู้ป่วยติดเตียงและผู้สูงอายุในตำบลทับใต้</p>
-                </div>
-                <button onclick="alert('เปิดฟอร์มเพิ่มอุปกรณ์ใหม่')" class="px-5 py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-2xl shadow-lg shadow-teal-600/20 transition flex items-center gap-2 text-xs sm:text-sm">
-                    <i class="fa-solid fa-plus"></i> เพิ่มอุปกรณ์ใหม่
-                </button>
-            </div>
-
-            <!-- ส่วนที่ 2: แถบแจ้งเตือนคำขอยืมรอดำเนินการ (1 รายการ) -->
-            <div class="bg-sky-50/70 border border-sky-200 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-sky-600 text-white rounded-2xl flex items-center justify-center text-xl shadow">
-                        <i class="fa-solid fa-circle-exclamation"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-bold text-sky-900">คำขอยืมรอดำเนินการ</h3>
-                        <p class="text-xs text-sky-700">มีประชาชนยื่นขอจองอุปกรณ์ออนไลน์</p>
-                    </div>
-                </div>
-                <button onclick="alert('แสดงหน้ารายการคำขอยืมรอดำเนินการ (1 รายการ)')" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-2xl shadow transition text-xs flex items-center gap-2">
-                    <span>1 รายการ</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-
-            <!-- ส่วนที่ 3: การ์ดสรุปสถิติต่างๆ 4 กล่อง -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- กล่อง 1 -->
-                <div class="bg-white border-2 border-teal-500/80 rounded-3xl p-5 shadow-sm space-y-2 relative">
-                    <div class="flex items-center justify-between text-slate-500 text-xs font-semibold">
-                        <span>อุปกรณ์ทั้งหมด</span>
-                        <i class="fa-solid fa-layer-group text-teal-600 text-base"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">12 <span class="text-xs font-normal text-slate-500">ชิ้น</span></h3>
-                    </div>
-                </div>
-
-                <!-- กล่อง 2 -->
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-2">
-                    <div class="flex items-center justify-between text-slate-500 text-xs font-semibold">
-                        <span>พร้อมใช้งาน (อยู่ในคลัง)</span>
-                        <i class="fa-regular fa-circle-check text-emerald-600 text-base"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">4 <span class="text-xs font-normal text-slate-500">ชิ้น</span></h3>
-                    </div>
-                </div>
-
-                <!-- กล่อง 3 -->
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-2">
-                    <div class="flex items-center justify-between text-slate-500 text-xs font-semibold">
-                        <span>กำลังยืม (ผู้ป่วยใช้งาน)</span>
-                        <i class="fa-regular fa-clock text-amber-500 text-base"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">7 <span class="text-xs font-normal text-slate-500">ชิ้น</span></h3>
-                    </div>
-                </div>
-
-                <!-- กล่อง 4 -->
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-2">
-                    <div class="flex items-center justify-between text-slate-500 text-xs font-semibold">
-                        <span>รออนุมัติคำขอ</span>
-                        <i class="fa-solid fa-circle-exclamation text-sky-600 text-base"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">1 <span class="text-xs font-normal text-slate-500">ชิ้น</span></h3>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ส่วนที่ 4: ช่องค้นหา, หมวดหมู่ และรายการอุปกรณ์ในมุมมองเจ้าหน้าที่ -->
-            <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-                
-                <!-- ช่องค้นหาและปุ่มรีเฟรช -->
-                <div class="flex flex-col sm:flex-row items-center gap-3">
-                    <div class="relative flex-grow w-full">
-                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </span>
-                        <input type="text" placeholder="ค้นหาชื่ออุปกรณ์, รหัสพัสดุ (เช่น EQ001), หรือหมวดหมู่..." class="w-full bg-slate-50/50 border border-slate-200 rounded-2xl pl-11 pr-4 py-3 text-sm focus:bg-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
-                    </div>
-                    <button onclick="alert('รีเฟรชรายการอุปกรณ์เรียบร้อยแล้ว')" class="w-full sm:w-auto px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-2xl transition flex items-center justify-center gap-2 text-xs">
-                        <i class="fa-solid fa-rotate"></i> รีเฟรช
-                    </button>
-                </div>
-
-                <!-- ปุ่มกรองหมวดหมู่ -->
-                <div class="flex flex-wrap items-center gap-2 text-xs">
-                    <span class="text-slate-500 font-medium mr-1">หมวดหมู่:</span>
-                    <button class="px-4 py-2 bg-teal-600 text-white font-semibold rounded-xl shadow-sm transition">ทั้งหมด</button>
-                    <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium rounded-xl transition">เตียง</button>
-                    <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium rounded-xl transition">รถเข็น</button>
-                    <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium rounded-xl transition">ถังออกซิเจน</button>
-                    <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium rounded-xl transition">ไม้เท้า</button>
-                </div>
-
-                <!-- ตาราง/กริดแสดงรายการอุปกรณ์ (เตียง EQ001-EQ003 และ รถเข็น EQ101-EQ103) -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-                    
-                    <!-- เตียง EQ001 -->
+                    <!-- การ์ดที่ 5 (EQ202) - ถังออกซิเจน (พร้อมใช้งาน) -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
-                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">เตียง</span>
-                                <span class="px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> กำลังยืมอยู่
-                                </span>
-                            </div>
-                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
-                                <img src="https://cx.lnwfile.com/_/cx/_raw/kp/51/2v.jpg" alt="เตียงผู้ป่วยไฟฟ้า" class="w-full h-full object-contain">
-                            </div>
-                            <h4 class="font-bold text-slate-900 text-sm">เตียงผู้ป่วยไฟฟ้า 3 ฟังก์ชั่น FASICARE (FB-204H)</h4>
-                        </div>
-                        <div class="space-y-3 pt-3 border-t border-slate-100">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-slate-500">รหัส: EQ001</span>
-                                <div class="flex items-center gap-2 text-slate-400">
-                                    <button onclick="alert('แก้ไขอุปกรณ์ EQ001')" class="hover:text-teal-600 p-1 transition"><i class="fa-solid fa-pen"></i></button>
-                                    <button onclick="alert('ลบอุปกรณ์ EQ001')" class="hover:text-red-600 p-1 transition"><i class="fa-solid fa-trash-can"></i></button>
-                                </div>
-                            </div>
-                            <div class="w-full py-2 bg-slate-100 text-slate-600 font-semibold rounded-xl text-center text-xs">
-                                อยู่ระหว่างการยืม
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- เตียง EQ002 -->
-                    <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">เตียง</span>
-                                <span class="px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> กำลังยืมอยู่
-                                </span>
-                            </div>
-                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
-                                <img src="https://cx.lnwfile.com/_/cx/_raw/kp/51/2v.jpg" alt="เตียงผู้ป่วยไฟฟ้า" class="w-full h-full object-contain">
-                            </div>
-                            <h4 class="font-bold text-slate-900 text-sm">เตียงผู้ป่วยไฟฟ้า 3 ฟังก์ชั่น FASICARE (FB-204H)</h4>
-                        </div>
-                        <div class="space-y-3 pt-3 border-t border-slate-100">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-slate-500">รหัส: EQ002</span>
-                                <div class="flex items-center gap-2 text-slate-400">
-                                    <button onclick="alert('แก้ไขอุปกรณ์ EQ002')" class="hover:text-teal-600 p-1 transition"><i class="fa-solid fa-pen"></i></button>
-                                    <button onclick="alert('ลบอุปกรณ์ EQ002')" class="hover:text-red-600 p-1 transition"><i class="fa-solid fa-trash-can"></i></button>
-                                </div>
-                            </div>
-                            <div class="w-full py-2 bg-slate-100 text-slate-600 font-semibold rounded-xl text-center text-xs">
-                                อยู่ระหว่างการยืม
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- เตียง EQ003 -->
-                    <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">เตียง</span>
-                                <span class="px-2.5 py-1 bg-sky-50 text-sky-700 border border-sky-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span> รออนุมัติคำขอยืม
-                                </span>
-                            </div>
-                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
-                                <img src="https://cx.lnwfile.com/_/cx/_raw/kp/51/2v.jpg" alt="เตียงผู้ป่วยไฟฟ้า" class="w-full h-full object-contain">
-                            </div>
-                            <h4 class="font-bold text-slate-900 text-sm">เตียงผู้ป่วยไฟฟ้า 3 ฟังก์ชั่น FASICARE (FB-204H)</h4>
-                        </div>
-                        <div class="space-y-3 pt-3 border-t border-slate-100">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-slate-500">รหัส: EQ003</span>
-                                <div class="flex items-center gap-2 text-slate-400">
-                                    <button onclick="alert('แก้ไขอุปกรณ์ EQ003')" class="hover:text-teal-600 p-1 transition"><i class="fa-solid fa-pen"></i></button>
-                                    <button onclick="alert('ลบอุปกรณ์ EQ003')" class="hover:text-red-600 p-1 transition"><i class="fa-solid fa-trash-can"></i></button>
-                                </div>
-                            </div>
-                            <div class="w-full py-2 bg-slate-100 text-slate-600 font-semibold rounded-xl text-center text-xs">
-                                อยู่ระหว่างการยืม
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- รถเข็น EQ101 -->
-                    <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">รถเข็น</span>
-                                <span class="px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> กำลังยืมอยู่
-                                </span>
-                            </div>
-                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
-                                <img src="https://image.makewebcdn.com/makeweb/m_1920x0/PMFzHCzxI/TAMedic/Wheelchair_TA_901_01.jpg" alt="รถเข็นนั่งวีลแชร์" class="w-full h-full object-contain">
-                            </div>
-                            <h4 class="font-bold text-slate-900 text-sm">รถเข็นนั่งวีลแชร์พับได้ โครงชุบโครเมียม เบาะหนัง</h4>
-                        </div>
-                        <div class="space-y-3 pt-3 border-t border-slate-100">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-slate-500">รหัส: EQ101</span>
-                                <div class="flex items-center gap-2 text-slate-400">
-                                    <button onclick="alert('แก้ไขอุปกรณ์ EQ101')" class="hover:text-teal-600 p-1 transition"><i class="fa-solid fa-pen"></i></button>
-                                    <button onclick="alert('ลบอุปกรณ์ EQ101')" class="hover:text-red-600 p-1 transition"><i class="fa-solid fa-trash-can"></i></button>
-                                </div>
-                            </div>
-                            <div class="w-full py-2 bg-slate-100 text-slate-600 font-semibold rounded-xl text-center text-xs">
-                                อยู่ระหว่างการยืม
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- รถเข็น EQ102 -->
-                    <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">รถเข็น</span>
-                                <span class="px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> กำลังยืมอยู่
-                                </span>
-                            </div>
-                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
-                                <img src="https://image.makewebcdn.com/makeweb/m_1920x0/PMFzHCzxI/TAMedic/Wheelchair_TA_901_01.jpg" alt="รถเข็นนั่งวีลแชร์" class="w-full h-full object-contain">
-                            </div>
-                            <h4 class="font-bold text-slate-900 text-sm">รถเข็นนั่งวีลแชร์พับได้ โครงชุบโครเมียม เบาะหนัง</h4>
-                        </div>
-                        <div class="space-y-3 pt-3 border-t border-slate-100">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-slate-500">รหัส: EQ102</span>
-                                <div class="flex items-center gap-2 text-slate-400">
-                                    <button onclick="alert('แก้ไขอุปกรณ์ EQ102')" class="hover:text-teal-600 p-1 transition"><i class="fa-solid fa-pen"></i></button>
-                                    <button onclick="alert('ลบอุปกรณ์ EQ102')" class="hover:text-red-600 p-1 transition"><i class="fa-solid fa-trash-can"></i></button>
-                                </div>
-                            </div>
-                            <div class="w-full py-2 bg-slate-100 text-slate-600 font-semibold rounded-xl text-center text-xs">
-                                อยู่ระหว่างการยืม
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- รถเข็น EQ103 (พร้อมใช้งาน) -->
-                    <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">รถเข็น</span>
+                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">ถังออกซิเจน</span>
                                 <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> พร้อมใช้งาน
                                 </span>
                             </div>
                             <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
-                                <img src="https://image.makewebcdn.com/makeweb/m_1920x0/PMFzHCzxI/TAMedic/Wheelchair_TA_901_01.jpg" alt="รถเข็นนั่งวีลแชร์" class="w-full h-full object-contain">
+                                <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=600" alt="ถังออกซิเจนทางการแพทย์" class="w-full h-full object-contain">
                             </div>
-                            <h4 class="font-bold text-slate-900 text-sm">รถเข็นนั่งวีลแชร์พับได้ โครงชุบโครเมียม เบาะหนัง</h4>
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">ถังออกซิเจนทางการแพทย์ 2 คิว พร้อมชุดเกจและรถเข็น</h4>
                         </div>
-                        <div class="space-y-3 pt-3 border-t border-slate-100">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-slate-500">รหัส: EQ103</span>
-                                <div class="flex items-center gap-2 text-slate-400">
-                                    <button onclick="alert('แก้ไขอุปกรณ์ EQ103')" class="hover:text-teal-600 p-1 transition"><i class="fa-solid fa-pen"></i></button>
-                                    <button onclick="alert('ลบอุปกรณ์ EQ103')" class="hover:text-red-600 p-1 transition"><i class="fa-solid fa-trash-can"></i></button>
-                                </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                            <span class="text-slate-500">รหัส: EQ202</span>
+                            <button onclick="openBookingModal()" class="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow transition">ขอยืมอุปกรณ์นี้</button>
+                        </div>
+                    </div>
+
+                    <!-- การ์ดที่ 6 (EQ203) - ถังออกซิเจน (พร้อมใช้งาน) -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">ถังออกซิเจน</span>
+                                <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> พร้อมใช้งาน
+                                </span>
                             </div>
-                            <button onclick="alert('บันทึกการยืมอุปกรณ์ EQ103')" class="w-full py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-semibold rounded-xl text-center text-xs transition flex items-center justify-center gap-1.5">
-                                <span>บันทึกการยืมอุปกรณ์นี้</span> <i class="fa-solid fa-arrow-right"></i>
-                            </button>
+                            <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 p-2">
+                                <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=600" alt="ถังออกซิเจนทางการแพทย์" class="w-full h-full object-contain">
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">ถังออกซิเจนทางการแพทย์ 2 คิว พร้อมชุดเกจและรถเข็น</h4>
+                        </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                            <span class="text-slate-500">รหัส: EQ203</span>
+                            <button onclick="openBookingModal()" class="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow transition">ขอยืมอุปกรณ์นี้</button>
                         </div>
                     </div>
 
                 </div>
-
             </div>
-
         </div>
 
     </main>
 
-    <!-- ป๊อปอัปยื่นคำขอยืมออนไลน์ (จองอุปกรณ์) -->
+    <!-- Modal ขอยืมอุปกรณ์ -->
     <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4 fade-in">
-        <div class="bg-white rounded-3xl shadow-2xl border border-slate-200 w-full max-w-lg overflow-hidden relative max-h-[90vh] overflow-y-auto">
-            
-            <!-- ปุ่มปิด (X) -->
-            <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full flex items-center justify-center bg-slate-50 hover:bg-slate-100 transition z-10">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-
-            <div class="p-6 sm:p-8 space-y-5">
-                <!-- หัวข้อ -->
-                <div class="space-y-1">
-                    <span class="text-teal-600 font-semibold text-xs">ยื่นคำขอยืมออนไลน์</span>
-                    <h3 class="text-xl font-bold text-slate-900">จองอุปกรณ์</h3>
-                    <p class="text-xs sm:text-sm font-bold text-slate-800 pt-1">เตียงผู้ป่วยไฟฟ้า 3 ฟังก์ชั่น FASICARE (FB-204H)</p>
-                    <p class="text-xs text-slate-500">รหัสอุปกรณ์: EQ003</p>
-                </div>
-
-                <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
-                    <!-- วันที่ต้องการยืม -->
-                    <div class="space-y-1.5">
-                        <label class="block text-xs font-semibold text-slate-700 flex items-center gap-1.5">
-                            <i class="fa-regular fa-calendar text-teal-600"></i> วันที่ต้องการยืม <span class="text-red-500">*</span>
-                        </label>
-                        <div class="relative">
-                            <input type="text" id="borrow-date" value="30/09/2026" required class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
-                            <span class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 pointer-events-none">
-                                <i class="fa-regular fa-calendar"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- กำหนดวันคืน -->
-                    <div class="space-y-1.5">
-                        <label class="block text-xs font-semibold text-slate-700 flex items-center gap-1.5">
-                            <i class="fa-solid fa-calendar-days text-teal-600"></i> กำหนดวันคืน <span class="text-red-500">*</span>
-                        </label>
-                        <div class="relative">
-                            <input type="text" id="return-date" value="30/10/2026" required placeholder="เช่น 30/10/2026" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition">
-                            <span class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 pointer-events-none">
-                                <i class="fa-regular fa-calendar"></i>
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- แนบรูปภาพแนบบัตรประชาชนผู้ยืม -->
-                    <div class="space-y-1.5">
-                        <label class="block text-xs font-semibold text-slate-700 flex items-center gap-1.5">
-                            <i class="fa-solid fa-id-card text-teal-600"></i> แนบรูปภาพบัตรประชาชนผู้ยืม <span class="text-red-500">*</span>
-                        </label>
-                        <div class="border-2 border-dashed border-slate-300 rounded-xl p-4 text-center hover:bg-slate-50 transition cursor-pointer relative">
-                            <input type="file" id="id-card-file" accept="image/*" required class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
-                            <div class="space-y-1">
-                                <i class="fa-solid fa-cloud-arrow-up text-teal-600 text-xl"></i>
-                                <p class="text-xs text-slate-600 font-medium">คลิกเพื่ออัปโหลด หรือลากไฟล์รูปบัตรประชาชนมาวางที่นี่</p>
-                                <p class="text-[10px] text-slate-400">PNG, JPG หรือ JPEG (ขนาดไม่เกิน 5MB)</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- วัตถุประสงค์หรือหมายเหตุ -->
-                    <div class="space-y-1.5">
-                        <label class="block text-xs font-semibold text-slate-700 flex items-center gap-1.5">
-                            <i class="fa-regular fa-file-lines text-teal-600"></i> วัตถุประสงค์หรือหมายเหตุ (ไม่บังคับ)
-                        </label>
-                        <textarea id="borrow-note" rows="2" placeholder="ระบุข้อมูลเพิ่มเติมสำหรับเจ้าหน้าที่" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none transition resize-none"></textarea>
-                    </div>
-
-                    <p class="text-[11px] text-slate-500 leading-relaxed">
-                        คำขอจะรอเจ้าหน้าที่ตรวจสอบและอนุมัติก่อน จึงจะถือว่าได้ยืมอุปกรณ์
-                    </p>
-
-                    <!-- ปุ่มกด -->
-                    <div class="flex items-center justify-end gap-3 pt-2">
-                        <button type="button" onclick="closeBookingModal()" class="px-5 py-2.5 text-xs font-semibold text-slate-600 hover:text-slate-800 transition">
-                            ยกเลิก
-                        </button>
-                        <button type="submit" class="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-xl shadow-lg shadow-teal-600/25 transition">
-                            ส่งคำขอจอง
-                        </button>
-                    </div>
-                </form>
+        <div class="bg-white rounded-3xl shadow-2xl border border-slate-200 w-full max-w-md overflow-hidden p-6 space-y-4">
+            <h3 class="text-lg font-bold text-slate-900">ยืนยันการขอยืมอุปกรณ์</h3>
+            <p class="text-xs text-slate-500">กรุณายืนยันความต้องการยืมอุปกรณ์ทางการแพทย์กับ รพ.สต. ทับใต้</p>
+            <div class="flex justify-end gap-3 pt-2">
+                <button onclick="closeBookingModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800">ยกเลิก</button>
+                <button onclick="submitBooking()" class="px-5 py-2 bg-teal-600 text-white text-xs font-semibold rounded-xl">ยืนยันการขอยืม</button>
             </div>
-        </div>
-    </div>
-
-    <!-- ป๊อปอัปแจ้งเตือนความสำเร็จ (Success Modal) -->
-    <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4 fade-in">
-        <div class="bg-white rounded-3xl shadow-2xl border border-slate-200 w-full max-w-sm overflow-hidden relative text-center p-6 sm:p-8 space-y-4">
-            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
-                <i class="fa-solid fa-check"></i>
-            </div>
-            <div class="space-y-1.5">
-                <h3 class="text-lg font-bold text-slate-900">ส่งคำขอสำเร็จ!</h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    ส่งคำขอให้เจ้าหน้าที่เรียบร้อยแล้ว <br>กรุณารอการอนุมัติ
-                </p>
-            </div>
-            <button onclick="closeSuccessModal()" class="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow-lg shadow-teal-600/25 transition text-xs">
-                ตกลง
-            </button>
         </div>
     </div>
 
@@ -818,26 +476,33 @@
         <p>โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ โทร. 032-510-123</p>
     </footer>
 
-    <!-- Script จัดการการทำงาน -->
+    <!-- Script ควบคุมการทำงานเดิม -->
     <script>
+        function showView(viewName) {
+            document.getElementById('view-auth').classList.add('hidden');
+            document.getElementById('view-dashboard').classList.add('hidden');
+
+            if(viewName === 'auth') document.getElementById('view-auth').classList.remove('hidden');
+            if(viewName === 'dashboard') document.getElementById('view-dashboard').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function switchTab(tab) {
             document.getElementById('content-staff').classList.add('hidden');
             document.getElementById('content-patient').classList.add('hidden');
             document.getElementById('content-register').classList.add('hidden');
-            document.getElementById('view-dashboard').classList.add('hidden');
-            document.getElementById('view-staff-dashboard').classList.add('hidden');
 
             document.getElementById('tab-staff').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900";
             document.getElementById('tab-patient').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900";
             document.getElementById('tab-register').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900";
 
-            if (tab === 'staff') {
+            if(tab === 'staff') {
                 document.getElementById('content-staff').classList.remove('hidden');
                 document.getElementById('tab-staff').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
-            } else if (tab === 'patient') {
+            } else if(tab === 'patient') {
                 document.getElementById('content-patient').classList.remove('hidden');
                 document.getElementById('tab-patient').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
-            } else if (tab === 'register') {
+            } else if(tab === 'register') {
                 document.getElementById('content-register').classList.remove('hidden');
                 document.getElementById('tab-register').className = "flex-1 py-2.5 px-2 rounded-2xl transition flex items-center justify-center gap-1.5 bg-white text-teal-700 shadow-sm font-semibold border border-slate-200/60";
             }
@@ -845,149 +510,26 @@
 
         function handleStaffLogin(e) {
             e.preventDefault();
-            
-            // ซ่อนหน้าล็อกอิน และแสดง Dashboard เจ้าหน้าที่ รพ.สต.
-            document.getElementById('view-auth').classList.add('hidden');
-            document.getElementById('view-staff-dashboard').classList.remove('hidden');
-
-            // เปลี่ยนแถบ Header ด้านบนให้เป็นเมนูของเจ้าหน้าที่ตามภาพตัวอย่าง
-            document.getElementById('main-header').innerHTML = `
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-teal-600 text-white rounded-xl flex items-center justify-center text-xl shadow-md">
-                            <i class="fa-solid fa-kit-medical"></i>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <span class="font-bold text-slate-900 text-base">MediBorrow</span>
-                                <span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-semibold rounded-full border border-emerald-200">รพ.สต. ทับใต้</span>
-                            </div>
-                            <p class="text-[11px] text-slate-500">โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ อ.หัวหิน</p>
-                        </div>
-                    </div>
-
-                    <!-- เมนูบาร์เจ้าหน้าที่ รพ.สต. -->
-                    <div class="hidden lg:flex items-center gap-1 text-xs font-semibold text-slate-600">
-                        <button onclick="alert('หน้าคลังอุปกรณ์')" class="px-3.5 py-2 bg-teal-50 text-teal-700 rounded-xl flex items-center gap-1.5 border border-teal-200 shadow-sm">
-                            <i class="fa-solid fa-boxes-stacked"></i> คลังอุปกรณ์
-                        </button>
-                        <button onclick="alert('หน้ารายการยืม-คืน')" class="px-3.5 py-2 hover:bg-slate-100 rounded-xl flex items-center gap-1.5 transition">
-                            <i class="fa-solid fa-right-left"></i> รายการยืม-คืน
-                        </button>
-                        <button onclick="alert('หน้าข้อมูลผู้ยืม')" class="px-3.5 py-2 hover:bg-slate-100 rounded-xl flex items-center gap-1.5 transition">
-                            <i class="fa-solid fa-users"></i> ข้อมูลผู้ยืม
-                        </button>
-                        <button onclick="alert('หน้าเจ้าหน้าที่')" class="px-3.5 py-2 hover:bg-slate-100 rounded-xl flex items-center gap-1.5 transition">
-                            <i class="fa-solid fa-user-shield"></i> เจ้าหน้าที่
-                        </button>
-                        <button onclick="alert('รีเซ็ตข้อมูลเดโม')" class="px-3.5 py-2 bg-amber-50 text-amber-700 border border-amber-200 rounded-xl flex items-center gap-1.5 transition">
-                            <i class="fa-solid fa-rotate"></i> รีเซ็ตข้อมูลเดโม
-                        </button>
-                        <button onclick="alert('QR ประชาชน')" class="px-3.5 py-2 bg-slate-100 text-slate-700 rounded-xl flex items-center gap-1.5 transition">
-                            <i class="fa-solid fa-qrcode"></i> QR ประชาชน
-                        </button>
-                    </div>
-
-                    <!-- ข้อมูลโปรไฟล์เจ้าหน้าที่และปุ่ม Export -->
-                    <div class="flex items-center gap-2">
-                        <button onclick="alert('กำลังดาวน์โหลดรายงาน Export...')" class="hidden sm:flex items-center gap-1.5 px-3 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-xl text-xs font-semibold hover:bg-emerald-100 transition">
-                            <i class="fa-solid fa-file-excel"></i> Export
-                        </button>
-                        <div class="flex items-center gap-2 px-3 py-1.5 bg-slate-100 text-slate-800 rounded-2xl border border-slate-200 text-xs font-bold">
-                            <i class="fa-solid fa-user-tie"></i> นางสาวศิริภัสสร สา... <span class="px-1.5 py-0.5 bg-teal-600 text-white rounded-md text-[10px]">จนท.</span>
-                        </div>
-                        <button onclick="handleLogout()" class="w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl flex items-center justify-center transition shadow-sm" title="ออกจากระบบ">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            alert('เข้าสู่ระบบเจ้าหน้าที่สำเร็จ');
+            showView('dashboard');
         }
 
         function handlePatientLogin(e) {
             e.preventDefault();
-            let name = document.getElementById('patient-name-input').value.trim();
-            let phone = document.getElementById('patient-phone').value;
-            if(phone.length !== 10 || isNaN(phone)) {
-                document.getElementById('err-patient-phone').classList.remove('hidden');
-                return;
-            }
-            document.getElementById('err-patient-phone').classList.add('hidden');
-            showDashboard(name || 'คุณนุนิ', phone);
+            showView('dashboard');
         }
 
         function handleRegister(e) {
             e.preventDefault();
-            let isValid = true;
-
-            let name = document.getElementById('reg-name').value.trim();
-            let idCard = document.getElementById('reg-idcard').value;
-            let phone = document.getElementById('reg-phone').value;
-            let subdistrict = document.getElementById('reg-subdistrict').value.trim();
-            let password = document.getElementById('reg-password').value;
-
-            document.getElementById('err-idcard').classList.add('hidden');
-            document.getElementById('err-phone').classList.add('hidden');
-            document.getElementById('err-subdistrict').classList.add('hidden');
-            document.getElementById('err-password').classList.add('hidden');
-
-            if (idCard.length !== 13 || isNaN(idCard)) {
-                document.getElementById('err-idcard').classList.remove('hidden');
-                isValid = false;
-            }
-
-            if (phone.length !== 10 || isNaN(phone)) {
-                document.getElementById('err-phone').classList.remove('hidden');
-                isValid = false;
-            }
-
-            const huahinSubdistricts = ['ทับใต้', 'หนองแก', 'หินเหล็กไฟ', 'หนองพลับ', 'หัวหิน', 'ห้วยสัตว์ใหญ่', 'บ่อฝ้าย'];
-            let isHuaHin = huahinSubdistricts.some(sub => subdistrict.includes(sub));
-            
-            if (!isHuaHin) {
-                document.getElementById('err-subdistrict').classList.remove('hidden');
-                isValid = false;
-            }
-
-            if (password.length < 6) {
-                document.getElementById('err-password').classList.remove('hidden');
-                isValid = false;
-            }
-
-            if (!isValid) return;
-
-            showDashboard(name || 'คุณนุนิ', phone);
-        }
-
-        function showDashboard(name, phone) {
-            document.getElementById('view-auth').classList.add('hidden');
-            document.getElementById('view-dashboard').classList.remove('hidden');
-            
-            document.getElementById('display-name').innerText = name;
-            document.getElementById('display-phone').innerText = phone;
-
-            document.getElementById('header-auth-area').innerHTML = `
-                <div class="flex items-center gap-3">
-                    <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-teal-50 text-teal-800 font-medium text-xs rounded-full border border-teal-200">
-                        <i class="fa-solid fa-globe"></i> หน้าบริการตรวจสอบอุปกรณ์สำหรับประชาชน • รพ.สต. ทับใต้
-                    </span>
-                    <div class="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 text-emerald-800 rounded-2xl border border-emerald-200 text-xs font-bold">
-                        <i class="fa-solid fa-user"></i> ${name} ผู้ยืม
-                    </div>
-                    <button onclick="handleLogout()" class="w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl flex items-center justify-center transition shadow-sm" title="ออกจากระบบ">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </button>
-                </div>
-            `;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            alert('ลงทะเบียนสำเร็จเรียบร้อย!');
+            showView('dashboard');
         }
 
         function handleLogout() {
-            location.reload(); // รีเฟรชหน้าเว็บกลับสู่หน้าหลัก/หน้าล็อกอินปกติ
+            showView('auth');
+            switchTab('patient');
         }
 
-        // ควบคุมการเปิด-ปิดป๊อปอัปจองอุปกรณ์
         function openBookingModal() {
             document.getElementById('booking-modal').classList.remove('hidden');
         }
@@ -996,15 +538,14 @@
             document.getElementById('booking-modal').classList.add('hidden');
         }
 
-        function handleBookingSubmit(e) {
-            e.preventDefault();
-            closeBookingModal(); // ปิดฟอร์มจอง
-            document.getElementById('success-modal').classList.remove('hidden'); // เปิดหน้าต่างแจ้งเตือนสำเร็จ
+        function submitBooking() {
+            alert('ส่งคำขอยืมอุปกรณ์เรียบร้อยแล้ว');
+            closeBookingModal();
         }
 
-        function closeSuccessModal() {
-            document.getElementById('success-modal').classList.add('hidden');
-        }
+        // เริ่มต้นเปิดหน้าจอแรก
+        showView('auth');
+        switchTab('register');
     </script>
 </body>
 </html>
