@@ -508,6 +508,24 @@
         </div>
     </div>
 
+    <!-- ป๊อปอัปแจ้งเตือนความสำเร็จ (Success Modal) -->
+    <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden p-4 fade-in">
+        <div class="bg-white rounded-3xl shadow-2xl border border-slate-200 w-full max-w-sm overflow-hidden relative text-center p-6 sm:p-8 space-y-4">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div class="space-y-1.5">
+                <h3 class="text-lg font-bold text-slate-900">ส่งคำขอสำเร็จ!</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    ส่งคำขอให้เจ้าหน้าที่เรียบร้อยแล้ว <br>กรุณารอการอนุมัติ
+                </p>
+            </div>
+            <button onclick="closeSuccessModal()" class="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow-lg shadow-teal-600/25 transition text-xs">
+                ตกลง
+            </button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="text-center py-4 text-xs text-slate-400 border-t border-slate-100">
         <p>โรงพยาบาลส่งเสริมสุขภาพตำบลทับใต้ โทร. 032-510-123</p>
@@ -641,10 +659,12 @@
 
         function handleBookingSubmit(e) {
             e.preventDefault();
-            let bDate = document.getElementById('borrow-date').value;
-            let rDate = document.getElementById('return-date').value;
-            alert('ส่งคำขอยืมอุปกรณ์ (รหัส EQ003) ระหว่างวันที่ ' + bDate + ' ถึง ' + rDate + ' สำเร็จ! กรุณารอเจ้าหน้าที่ตรวจสอบและอนุมัติ');
-            closeBookingModal();
+            closeBookingModal(); // ปิดหน้าต่างฟอร์มจอง
+            document.getElementById('success-modal').classList.remove('hidden'); // เปิดหน้าต่างแจ้งเตือนสำเร็จ
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
         }
     </script>
 </body>
