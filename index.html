@@ -374,14 +374,16 @@
                         </div>
                     </div>
 
-                    <!-- การ์ดที่ 3 (EQ003 - พร้อมใช้งาน พร้อมปุ่มเปิดป๊อปอัป) -->
+                    <!-- การ์ดที่ 3 (EQ003 - เปลี่ยนสถานะได้แบบไดนามิก) -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
                                 <span class="px-2.5 py-1 bg-slate-800 text-white text-[11px] font-semibold rounded-lg">เตียง</span>
-                                <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> พร้อมใช้งาน
-                                </span>
+                                <div id="card-badge-eq003">
+                                    <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> พร้อมใช้งาน
+                                    </span>
+                                </div>
                             </div>
                             <div class="aspect-video bg-white rounded-xl overflow-hidden flex items-center justify-center border border-slate-100 relative group p-2">
                                 <img src="https://cx.lnwfile.com/_/cx/_raw/kp/51/2v.jpg" alt="เตียงผู้ป่วยไฟฟ้า" class="w-full h-full object-contain">
@@ -390,9 +392,11 @@
                         </div>
                         <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
                             <span class="text-slate-500">รหัส: EQ003</span>
-                            <button onclick="openBookingModal()" class="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow transition flex items-center gap-1.5">
-                                <i class="fa-solid fa-calendar-check"></i> ยื่นขอยืมออนไลน์ (จองอุปกรณ์) <i class="fa-solid fa-arrow-right"></i>
-                            </button>
+                            <div id="card-action-eq003">
+                                <button onclick="openBookingModal()" class="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-xl shadow transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-calendar-check"></i> ยื่นขอยืมออนไลน์ (จองอุปกรณ์) <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -659,12 +663,22 @@
 
         function handleBookingSubmit(e) {
             e.preventDefault();
-            closeBookingModal(); // ปิดหน้าต่างฟอร์มจอง
+            closeBookingModal(); // ปิดฟอร์มจอง
             document.getElementById('success-modal').classList.remove('hidden'); // เปิดหน้าต่างแจ้งเตือนสำเร็จ
         }
 
         function closeSuccessModal() {
             document.getElementById('success-modal').classList.add('hidden');
+            
+            // อัปเดตสถานะของการ์ดอุปกรณ์ EQ003 เป็น "รออนุมัติคำขอยืม" ทันทีตามภาพตัวอย่าง
+            document.getElementById('card-badge-eq003').innerHTML = `
+                <span class="px-2.5 py-1 bg-sky-50 text-sky-700 border border-sky-200 text-[11px] font-semibold rounded-full flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span> รออนุมัติคำขอยืม
+                </span>
+            `;
+            document.getElementById('card-action-eq003').innerHTML = `
+                <span class="px-3.5 py-1.5 bg-slate-100 text-slate-500 font-semibold rounded-xl text-xs">รออนุมัติคำขอยืม</span>
+            `;
         }
     </script>
 </body>
